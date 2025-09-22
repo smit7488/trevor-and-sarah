@@ -11,7 +11,9 @@ function App() {
           alt="Trevor & Sarah logo"
         />
       </div>
-      <h1>Coming Soon!</h1>
+      <p className="text-uppercase mt-5" style={{
+  letterSpacing: "0.15em",
+  }} >Coming Soon!</p>
     </>
   );
 }
