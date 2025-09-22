@@ -14,12 +14,7 @@
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-.logo.cloudflare:hover {
-  filter: drop-shadow(0 0 2em #f6821faa);
-}
+
 
 @keyframes logo-spin {
   from {
@@ -42,4 +37,10 @@
 
 .read-the-docs {
   color: #888;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: brightness(0) invert(1);
+  }
 }
