@@ -23,6 +23,21 @@
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 700;
+  text-transform: uppercase;
+  color:#1A1A1A;
+}
+.logo.trevorandsarah{
+  max-width: 300px;
+}
+
+.letter-spacing-wide {
+  letter-spacing: 0.15em;
+}
+.letter-spacing-wider {
+  letter-spacing: 0.25em;
+}
+.letter-spacing-widest {
+  letter-spacing: 0.35em;
 }
 
 a {
@@ -87,5 +102,8 @@ button:focus-visible {
     background-color: #1a1a1a;
     
   }
+  h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+  } 
 
 }
