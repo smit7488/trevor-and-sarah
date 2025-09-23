@@ -1,0 +1,30 @@
+/* Only mobile collapse */
+@media (max-width: 991.98px) { /* lg breakpoint */
+  .navbar-collapse.collapse {
+    transition: height 0.35s ease, opacity 0.35s ease;
+    opacity: 0;
+  }
+
+  .navbar-collapse.collapse.show {
+    opacity: 1;
+  }
+}
+
+/* Logo hover */
+.navbar-brand img {
+  transition: filter 0.3s ease;
+}
+
+.navbar-brand img:hover {
+  filter: drop-shadow(0 0 1.5em #646cffaa);
+}
+
+.navbar .navbar-brand {
+  color: #1a1a1a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .navbar .navbar-brand {
+  color: #ffffff;
+}
+}

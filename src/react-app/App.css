@@ -1,21 +1,86 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* ==============================
+   Global Styles
+   ============================== */
+
+/* Root-level resets and typography */
+:root {
+  --font-family-base: "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-text: #1a1a1a;
+  --color-bg: #ffffff;
+  --color-accent: #646cff;
+  --color-accent-hover: #535bf2;
+  --color-muted: #888;
+
+  --transition-base: 300ms ease-in-out;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: rgba(255, 255, 255, 0.87);
+    --color-bg: #1a1a1a;
+    --color-accent-hover: #747bff;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px; /* makes rems predictable */
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  background-color: var(--bs-body-bg, #ffffff);
+  color: var(--bs-body-color, #1a1a1a);
+}
+
+
+/* ==============================
+   Layout
+   ============================== */
+
+#root {
+  margin: 0;
+  padding: 0;
+  max-width: none; /* app can define its own containers */
+  min-height: 100vh;
+}
+
+/* Utility classes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* ==============================
+   Logo
+   ============================== */
 
 .logo {
   height: 12rem;
-  padding: 1.5em;
+  padding: 1.5rem;
+  transition: filter var(--transition-base);
   will-change: filter;
-  transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em var(--color-accent));
 }
 
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: brightness(0) invert(1);
+  }
+}
 
+/* Optional fun spin effect (kept, but scoped) */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -26,21 +91,70 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
+  .logo.spin {
     animation: logo-spin infinite 20s linear;
   }
 }
 
+/* ==============================
+   Cards & Content
+   ============================== */
+
 .card {
-  padding: 2em;
+  padding: 2rem;
+  background: var(--color-bg);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.read-the-docs {
-  color: #888;
+/* ==============================
+   Typography Helpers
+   ============================== */
+
+.text-muted {
+  color: var(--color-muted);
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: brightness(0) invert(1);
-  }
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+/* ==============================
+   Links & Buttons
+   ============================== */
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.6em 1.2em;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: var(--color-bg);
+  transition: border-color var(--transition-base), background-color var(--transition-base);
+}
+
+button:hover {
+  border-color: var(--color-accent);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }

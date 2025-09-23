@@ -19,6 +19,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -30,11 +36,12 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  background-color: var(--bs-body-bg, #ffffff);
+  color: var(--bs-body-color, #1a1a1a);
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -71,4 +78,14 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root, body {
+    color: #fff;
+    background-color: #1a1a1a;
+    
+  }
+
 }
