@@ -13,14 +13,4 @@
   text-decoration: underline;
 }
 
-/* Optional: dark mode tweaks */
-@media (prefers-color-scheme: dark) {
-  .footer {
-    background-color: #111111; /* slightly darker in dark mode */
-    color: #ffffff;
-  }
 
-  .footer .footer-link {
-    color: #ffffff;
-  }
-}

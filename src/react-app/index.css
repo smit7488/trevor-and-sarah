@@ -54,41 +54,7 @@
   --bs-btn-disabled-border-color: var(--bs-primary);
 }
 
-/* ==============================
-   Dark Mode Overrides
-   ============================== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-text: #ffffff;
-    --color-bg: #1a1a1a;
 
-    --bs-primary: #f5b1aa;
-    --bs-primary-hover: #f28c82;
-    --bs-secondary: #f4d28c;
-    --bs-secondary-hover: #eec35a;
-    --bs-success: #80cbc4;
-    --bs-success-hover: #008080;
-
-    /* Buttons Dark Mode */
-    --bs-btn-color: #fff;
-    --bs-btn-bg: var(--bs-primary);
-    --bs-btn-border-color: var(--bs-primary);
-
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: var(--bs-primary-hover);
-    --bs-btn-hover-border-color: var(--bs-primary-hover);
-
-    --bs-btn-focus-shadow-rgb: 245, 177, 170;
-
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #f28c82;
-    --bs-btn-active-border-color: #f28c82;
-
-    --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: var(--bs-primary);
-    --bs-btn-disabled-border-color: var(--bs-primary);
-  }
-}
 
 /* Primary button overrides */
 .btn-primary {
@@ -176,12 +142,15 @@
 .bg-light-200  { background-color: #e6e6e6 !important; }
 .bg-light-300  { background-color: #cccccc !important; }
 .bg-light-400  { background-color: #b3b3b3 !important; }
+
 .bg-dark       { background-color: #1a1a1a !important; }
 .bg-dark-50    { background-color: #2b2b2b !important; }
 .bg-dark-100   { background-color: #3d3d3d !important; }
 .bg-dark-200   { background-color: #4e4e4e !important; }
 .bg-dark-300   { background-color: #666666 !important; }
 .bg-dark-400   { background-color: #808080 !important; }
+
+
 
 
 
@@ -225,6 +194,7 @@ a {
   font-weight: 500;
   color: var(--bs-primary);
   text-decoration: inherit;
+  cursor: pointer;
 }
 a:hover { color: var(--bs-primary-hover); }
 
@@ -262,14 +232,5 @@ button:disabled {
   color: var(--bs-btn-disabled-color);
 }
 
-/* Dark / Light Mode overrides for body and links */
-@media (prefers-color-scheme: light) {
-  body { background-color: #ffffff; color: #1a1a1a; }
-  a:hover { color: #d96b63; }
-}
 
-@media (prefers-color-scheme: dark) {
-  body { background-color: #1a1a1a; color: #fff; }
-  h1, h2, h3, h4, h5, h6 { color: #fff; }
-  a:hover { color: #f28c82; }
-}
+
