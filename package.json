@@ -18,6 +18,7 @@
     "@fontsource/allura": "^5.2.8",
     "@fontsource/montserrat": "^5.2.8",
     "@fontsource/raleway": "^5.2.8",
+    "@formspree/react": "^3.0.0",
     "bootstrap": "^5.3.8",
     "contentful": "^11.7.19",
     "hono": "^4.9.8",

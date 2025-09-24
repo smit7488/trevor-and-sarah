@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { Container, Row, Col, Button, Form, Card } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Container, Row, Col, Button, Form, Card, Spinner } from "react-bootstrap";
 
 interface ContactFormData {
   fullName: string;
@@ -16,24 +16,64 @@ interface ContactFormData {
 }
 
 export default function ContactForm() {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ContactFormData>();
-  const [success, setSuccess] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    setValue,
+  } = useForm<ContactFormData>();
 
+  const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Load reCAPTCHA script dynamically
+  useEffect(() => {
+    if (!(window as any).grecaptcha) {
+      const script = document.createElement("script");
+      script.src = "https://www.google.com/recaptcha/api.js?render=6LdTcNMrAAAAAPf8b1L4ABIuyXtNlbZSeSxbTEgO";
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  // Submit function
   const onSubmit = async (data: ContactFormData) => {
     try {
-      const formData = new FormData();
-      for (const key in data) {
-        formData.append(key, data[key as keyof ContactFormData] ?? "");
+      setErrorMessage("");
+
+      if (!(window as any).grecaptcha) {
+        setErrorMessage("reCAPTCHA not loaded. Please refresh the page.");
+        return;
       }
 
-      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      // Execute reCAPTCHA v3
+      const token: string = await (window as any).grecaptcha.execute(
+        "6LdTcNMrAAAAAPf8b1L4ABIuyXtNlbZSeSxbTEgO", // Replace with your site key
+        { action: "contact_form" }
+      );
+
+      // Add token to form data
+      const payload = { ...data, "g-recaptcha-response": token };
+      setValue("g-recaptcha-response", token);
+
+      // Submit to Formspree
+      const res = await fetch("https://formspree.io/f/xzzjbldj", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
-      if (res.ok) setSuccess(true);
+      if (res.ok) {
+        setSuccess(true);
+      } else {
+        const text = await res.text();
+        console.error("Formspree error:", text);
+        setErrorMessage("Something went wrong. Please try again.");
+      }
     } catch (err) {
       console.error(err);
+      setErrorMessage("Something went wrong. Please try again.");
     }
   };
 
@@ -44,10 +84,14 @@ export default function ContactForm() {
           <Col xs={12} md={10} lg={8}>
             <Card className="shadow-sm rounded border-0 p-4 p-md-5">
               {success ? (
-                <h3 className="text-center text-success">Thank you! Your message has been sent.</h3>
+                <h3 className="text-center text-success">
+                  Thank you! Your message has been sent.
+                </h3>
               ) : (
                 <Form onSubmit={handleSubmit(onSubmit)}>
                   <h2 className="mb-4 text-center">Contact Us</h2>
+
+                  {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 
                   <Form.Group className="mb-3" controlId="fullName">
                     <Form.Label>Full Name *</Form.Label>
@@ -57,7 +101,9 @@ export default function ContactForm() {
                       {...register("fullName", { required: true })}
                       isInvalid={!!errors.fullName}
                     />
-                    <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      This field is required
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="email">
@@ -68,18 +114,22 @@ export default function ContactForm() {
                       {...register("email", { required: true })}
                       isInvalid={!!errors.email}
                     />
-                    <Form.Control.Feedback type="invalid">Valid email required</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      Valid email required
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="phone">
                     <Form.Label>Phone Number *</Form.Label>
                     <Form.Control
                       type="tel"
-                      placeholder="E.g. 541 444 0755"
+                      placeholder="E.g. 585-444-0755"
                       {...register("phone", { required: true })}
                       isInvalid={!!errors.phone}
                     />
-                    <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      This field is required
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="eventDate">
@@ -89,19 +139,27 @@ export default function ContactForm() {
                       {...register("eventDate", { required: true })}
                       isInvalid={!!errors.eventDate}
                     />
-                    <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      This field is required
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="service">
                     <Form.Label>Service *</Form.Label>
-                    <Form.Select {...register("service", { required: true })} isInvalid={!!errors.service}>
+                    <Form.Select
+                      {...register("service", { required: true })}
+                      isInvalid={!!errors.service}
+                    >
                       <option value="">Select an option</option>
                       <option value="wedding">Wedding</option>
                       <option value="engagement">Engagement</option>
                       <option value="family">Family</option>
                       <option value="portrait">Portrait</option>
+                      <option value="other">Other</option>
                     </Form.Select>
-                    <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      This field is required
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="venue">
@@ -111,56 +169,57 @@ export default function ContactForm() {
                       {...register("venue", { required: true })}
                       isInvalid={!!errors.venue}
                     />
-                    <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      This field is required
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="hearAboutUs">
                     <Form.Label>How did you hear about us? *</Form.Label>
-                    <Form.Select {...register("hearAboutUs", { required: true })} isInvalid={!!errors.hearAboutUs}>
+                    <Form.Select
+                      {...register("hearAboutUs", { required: true })}
+                      isInvalid={!!errors.hearAboutUs}
+                    >
                       <option value="">Select an option</option>
                       <option value="instagram">Instagram</option>
                       <option value="friend">Friend</option>
                       <option value="google">Google</option>
                       <option value="other">Other</option>
                     </Form.Select>
-                    <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="importance">
-                    <Form.Label>How important is capturing your wedding day? *</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      {...register("importance", { required: true })}
-                      isInvalid={!!errors.importance}
-                    />
-                    <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      This field is required
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group className="mb-4" controlId="additionalInfo">
-                    <Form.Label>What else should we know? *</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      {...register("additionalInfo", { required: true })}
-                      isInvalid={!!errors.additionalInfo}
-                    />
-                    <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>
+                    <Form.Label>What else should we know?</Form.Label>
+                    <Form.Control as="textarea" rows={3} {...register("additionalInfo")} />
                   </Form.Group>
 
-                  {/* reCAPTCHA */}
-                  <div className="mb-3">
-                    <div className="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-                  </div>
+                  {/* Hidden reCAPTCHA token */}
+                  <input type="hidden" {...register("g-recaptcha-response")} />
 
                   <small className="d-block mb-3 text-muted">
                     This form is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
-                    Clicking SEND confirms you're okay with getting texts from Roc Focus. Message and/or data rates may apply.
                   </small>
 
                   <div className="d-grid">
                     <Button type="submit" variant="outline-dark" size="lg" disabled={isSubmitting}>
-                      Send
+                      {isSubmitting ? (
+                        <>
+                          <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                            className="me-2"
+                          />
+                          Sending...
+                        </>
+                      ) : (
+                        "Send"
+                      )}
                     </Button>
                   </div>
                 </Form>
