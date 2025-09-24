@@ -232,5 +232,7 @@ button:disabled {
   color: var(--bs-btn-disabled-color);
 }
 
-
+.coming-soon-hero {
+  height: 100vh !important;
+}
 

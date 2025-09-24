@@ -11,6 +11,7 @@ export default function ComingSoon() {
       {/* Hero */}
       <MediaHero
         videoSrc={heroVideo}
+        className="coming-soon-hero" 
         overlayContent={
           <>
             <img
