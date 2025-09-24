@@ -10,6 +10,7 @@ import "@fontsource/montserrat/600.css"; // Bold
 import App from "./App.tsx";
 
 
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
