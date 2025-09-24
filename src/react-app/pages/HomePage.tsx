@@ -14,8 +14,9 @@ export default function HomePage() {
     { title: "Engagements", description: "Celebrate your love with stunning engagement sessions." },
     { title: "Family", description: "Family portraits that capture genuine moments and connections." },
     { title: "Portraits", description: "Professional portraits for individuals or couples, tailored to your style." },
-  ];
+  ]; 
 
+S
   return (
     <>
       {/* Hero */}
