@@ -1,7 +1,8 @@
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MediaHero from "../components/MediaHero";
-import heroVideo from "../assets/hero-video.mp4";
+import heroVideo from "../assets/hero-bg-v1.mp4";
+import heroImage from "../assets/hero-bg-v1.avif";
 import tsLogo from "../assets/trevor-and-sarah-logo-vertical-white.svg";
 import aboutImage from "../assets/IG-image.jpg"; 
 import Testimonials from "../components/Testimonials";
@@ -22,12 +23,14 @@ export default function HomePage() {
       {/* Hero */}
       <MediaHero
         videoSrc={heroVideo}
+        imageSrc={heroImage}
         overlayContent={
           <>
             <img
               src={tsLogo}
               className="logo trevorandsarah"
               alt="Trevor & Sarah logo"
+
             />
             <p
               className="text-uppercase mt-5"

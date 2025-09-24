@@ -1,5 +1,6 @@
 import MediaHero from "../components/MediaHero";
 import heroVideo from "../assets/hero-bg-v1.mp4";
+import heroImage from "../assets/hero-bg-v1.avif";
 import tsLogo from "../assets/trevor-and-sarah-logo-vertical-white.svg";
 
 
@@ -11,6 +12,7 @@ export default function ComingSoon() {
       {/* Hero */}
       <MediaHero
         videoSrc={heroVideo}
+        imageSrc={heroImage}
         className="coming-soon-hero" 
         overlayContent={
           <>
