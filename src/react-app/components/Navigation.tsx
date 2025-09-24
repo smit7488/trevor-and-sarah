@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import TsIcon from "../assets/ts-icon.svg";
 import TsLogo from "../assets/trevor-and-sarah-logo-horizontal.svg";
 import "./Navigation.css";
 
@@ -14,6 +13,7 @@ const Navigation: React.FC = () => {
             src={TsLogo}
             alt="Trevor & Sarah"
           
+            
             height={40}
             className="d-inline-block align-text-top me-2"
           />
