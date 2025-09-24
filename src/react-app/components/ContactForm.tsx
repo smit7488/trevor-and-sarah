@@ -200,8 +200,17 @@ export default function ContactForm() {
                   <input type="hidden" {...register("g-recaptcha-response")} />
 
                   <small className="d-block mb-3 text-muted">
-                    This form is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
-                  </small>
+  This site is protected by reCAPTCHA and the Google{' '}
+  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+    Privacy Policy
+  </a>{' '}
+  and{' '}
+  <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">
+    Terms of Service
+  </a>{' '}
+  apply.
+</small>
+
 
                   <div className="d-grid">
                     <Button type="submit" variant="outline-dark" size="lg" disabled={isSubmitting}>

@@ -34,7 +34,7 @@ const MediaHero: React.FC<MediaHeroProps> = ({
 
       {overlayContent && (
         <div
-          className="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center"
+          className="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center media-hero-overlay"
           style={{ color: "#fff", zIndex: 1 }}
         >
           {overlayContent}

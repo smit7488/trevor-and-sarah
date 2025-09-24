@@ -169,6 +169,11 @@ body {
   color: var(--color-text);
 }
 
+.grecaptcha-badge { 
+    visibility: hidden !important;
+}
+
+
 #root { margin: 0; padding: 0; min-height: 100vh; }
 
 .container {
