@@ -16,7 +16,7 @@ export default function HomePage() {
     { title: "Portraits", description: "Professional portraits for individuals or couples, tailored to your style." },
   ]; 
 
-S
+
   return (
     <>
       {/* Hero */}
