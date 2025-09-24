@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import TsIcon from "../assets/ts-icon.svg";
+import TsLogo from "../assets/trevor-and-sarah-logo-horizontal.svg";
 import "./Navigation.css";
 
 const Navigation: React.FC = () => {
@@ -10,13 +11,13 @@ const Navigation: React.FC = () => {
         {/* Logo */}
         <Navbar.Brand href="/" className="d-flex align-items-center">
           <img
-            src={TsIcon}
+            src={TsLogo}
             alt="Trevor & Sarah"
-            width={40}
+          
             height={40}
             className="d-inline-block align-text-top me-2"
           />
-          <h4 className="mb-0 text-uppercase raleway">Trevor & Sarah</h4>
+         
         </Navbar.Brand>
 
         {/* Hamburger toggle */}

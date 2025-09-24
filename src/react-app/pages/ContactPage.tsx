@@ -1,38 +1,55 @@
-import VideoHero from "../components/MediaHero";
-import Grid from "../components/Grid";
+import { Container, Row, Col } from "react-bootstrap";
+import MediaHero from "../components/MediaHero";
 import heroVideo from "../assets/hero-video.mp4";
 import tsLogo from "../assets/trevor-and-sarah-logo-vertical-white.svg";
+import ContactForm from "../components/ContactForm";
 
-export default function HomePage() {
-  // Simple placeholder items
-  const placeholderItems = Array.from({ length: 6 }, (_, i) => (
-    <div
-      key={i}
-      className="placeholder-box text-center p-5 bg-light border rounded"
-    >
-      Placeholder {i + 1}
-    </div>
-  ));
-
+export default function ContactPage() {
   return (
     <>
-      {/* Hero */}
-      <VideoHero
+      {/* Hero Section */}
+     <MediaHero
         videoSrc={heroVideo}
         overlayContent={
           <>
-            <img src={tsLogo} className="logo trevorandsarah" alt="Trevor & Sarah logo" />
-            <p className="text-uppercase mt-5" style={{ letterSpacing: "0.15em" }}>
-              Coming Soon!
+            <img
+              src={tsLogo}
+              className="logo trevorandsarah"
+              alt="Trevor & Sarah logo"
+            />
+            <p
+              className="text-uppercase mt-5"
+              style={{ letterSpacing: "0.15em" }}
+            >
+              Let's capture your special moments together.
             </p>
           </>
         }
       />
 
-      {/* Placeholder grid */}
-      <section className="my-5">
-        <h2 className="text-center text-uppercase mb-4">Our Work</h2>
-        <Grid items={placeholderItems} columns={{ xs: 12, md: 6, lg: 4 }} />
+      {/* Contact Form Section */}
+      <ContactForm />
+
+      {/* Optional Additional Info Section */}
+      <section className="py-5 bg-light">
+        <Container>
+          <Row className="text-center">
+            <Col>
+              <h2 className="mb-4">Get In Touch</h2>
+              <p>
+                We’d love to hear about your upcoming event! Fill out the form above, and we’ll
+                get back to you as soon as possible. Prefer texting or calling? No problem—our
+                contact info is below.
+              </p>
+              <p className="mb-0">
+                <strong>Email:</strong> hello@trevorandsarah.com
+              </p>
+              <p>
+                <strong>Phone:</strong> (541) 444-0755
+              </p>
+            </Col>
+          </Row>
+        </Container>
       </section>
     </>
   );
