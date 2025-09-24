@@ -1,0 +1,26 @@
+.footer {
+  background-color: #1A1A1A;
+  color: #ffffff;
+}
+
+/* Ensure links are visible on dark background */
+.footer .footer-link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer .footer-link:hover {
+  text-decoration: underline;
+}
+
+/* Optional: dark mode tweaks */
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background-color: #111111; /* slightly darker in dark mode */
+    color: #ffffff;
+  }
+
+  .footer .footer-link {
+    color: #ffffff;
+  }
+}

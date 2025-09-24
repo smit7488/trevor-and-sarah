@@ -5,7 +5,7 @@ import "./Navigation.css";
 
 const Navigation: React.FC = () => {
   return (
-    <Navbar expand="lg" bg="light" variant="light" className="shadow-sm">
+    <Navbar expand="lg" bg="light" variant="light" className="shadow-sm" sticky="top">
       <Container>
         {/* Logo */}
         <Navbar.Brand href="/" className="d-flex align-items-center">
@@ -16,7 +16,7 @@ const Navigation: React.FC = () => {
             height={40}
             className="d-inline-block align-text-top me-2"
           />
-          <h4 className="mb-0 text-uppercase">Trevor & Sarah</h4>
+          <h4 className="mb-0 text-uppercase raleway">Trevor & Sarah</h4>
         </Navbar.Brand>
 
         {/* Hamburger toggle */}
