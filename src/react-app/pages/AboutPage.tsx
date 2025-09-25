@@ -1,5 +1,7 @@
 import MediaHero from "../components/MediaHero";
 import heroImage from "../assets/hero-image-min.avif";
+import InstagramFeed from "../components/InstagramFeed";
+import Testimonials from "../components/Testimonials";
 
 export default function AboutPage() {
   return (
@@ -45,27 +47,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Testimonial / Value Prop */}
-      <section className="bg-light py-5 text-center">
-        <div className="container">
-          <blockquote className="blockquote">
-            <p className="mb-3">
-              "Trevor & Sarah made our wedding unforgettable! Every photo and video
-              tells the story beautifully — we couldn’t be happier."
-            </p>
-            <footer className="blockquote-footer">Happy Couple</footer>
-          </blockquote>
-        </div>
-      </section>
+       {/* Testimonials */}
+      <Testimonials variant="carousel" className="bg-light-100" />
 
-      {/* Contact / Form Placeholder */}
-      <section className="container my-5">
-        <h2 className="text-center mb-4">Get in Touch</h2>
-        <div className="border rounded p-5 text-center">
-          {/* Replace this with your actual form component */}
-          <p>Form Placeholder</p>
-        </div>
-      </section>
+       <InstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
     </>
   );
 }

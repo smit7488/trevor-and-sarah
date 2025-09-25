@@ -4,6 +4,8 @@ import Grid from "../components/Grid";
 import BasicHero from "../components/BasicHero";
 import Testimonials from "../components/Testimonials";
 import Badge from "react-bootstrap/Badge";
+import InstagramFeed from "../components/InstagramFeed";
+import CallToAction from "../components/CallToAction";
 
 export default function VideoPage() {
   const [videoItems, setVideoItems] = useState<JSX.Element[]>([]);
@@ -86,7 +88,7 @@ export default function VideoPage() {
 
   return (
     <>
-      <BasicHero title="Cinematography" />
+      <BasicHero title="Film" />
 
       {/* Video Grid */}
       <section className="my-5">
@@ -96,13 +98,16 @@ export default function VideoPage() {
 
      <Testimonials variant="carousel" />
 
-      {/* Contact / Form Placeholder */}
-      <section className="container my-5">
-        <h2 className="text-center mb-4">Get in Touch</h2>
-        <div className="border rounded p-5 text-center">
-          <p>Form Placeholder</p>
-        </div>
-      </section>
+     <CallToAction
+        heading="Lights, Camera... You!"
+        subheading="Let us capture your most memorable moments with cinematic quality and storytelling flair."
+        bgColor="#2b2b2b"
+        textColor="#fff"
+        buttonText="Get Started"
+        buttonLink="/contact"
+      />
+
+    <InstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
     </>
   );
 }

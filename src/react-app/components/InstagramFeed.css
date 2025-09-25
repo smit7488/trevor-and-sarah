@@ -1,7 +1,34 @@
-.instagram-img-col img {
-  transition: transform 0.3s ease;
+.instagram-row {
+  display: flex;
+  flex-wrap: nowrap; /* prevent wrapping */
+  overflow: hidden;  /* hide extra images */
+  width: 100%;
 }
 
-.instagram-img-col img:hover {
-  transform: scale(1.05);
+.instagram-img-col {
+  flex-shrink: 0; /* prevent shrinking */
+  width: 50%;      /* xs default: 2 per row */
+  height: 300px;
+  overflow: hidden;
+}
+
+/* Small screens ≥576px: 3 per row */
+@media (min-width: 576px) {
+  .instagram-img-col {
+    width: 33.3333%;
+  }
+}
+
+/* Medium screens ≥768px: 4 per row */
+@media (min-width: 768px) {
+  .instagram-img-col {
+    width: 25%;
+  }
+}
+
+/* Large screens ≥992px: 6 per row */
+@media (min-width: 992px) {
+  .instagram-img-col {
+    width: 16.6667%;
+  }
 }

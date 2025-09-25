@@ -7,6 +7,7 @@ import tsLogo from "../assets/trevor-and-sarah-logo-vertical-white.svg";
 import aboutImage from "../assets/IG-image.jpg"; 
 import Testimonials from "../components/Testimonials";
 import InstagramFeed from "../components/InstagramFeed";
+import CallToAction from "../components/CallToAction";
 
 export default function HomePage() {
 
@@ -84,7 +85,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Services Section - Full Width Cards */}
 {/* Services Section - Full Width Cards */}
 <section className="py-5 bg-light-100">
   <Container>
@@ -154,6 +154,16 @@ export default function HomePage() {
 
       {/* Testimonials */}
       <Testimonials variant="carousel" className="bg-light-100" />
+      
+      
+       <CallToAction
+        heading="Ready to Capture Your Moments?"
+        subheading="Let us help you preserve memories that last a lifetime."
+        bgColor="#2b2b2b"
+        textColor="#fff"
+        buttonText="Get in Touch"
+        buttonLink="/contact"
+      />
 
       <InstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
     </>

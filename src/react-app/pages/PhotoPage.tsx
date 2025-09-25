@@ -2,6 +2,9 @@ import { useEffect, useState, JSX } from "react";
 import client from "../contentfulClient";
 import { PortfolioItem } from "../types/contentful";
 import Grid from "../components/Grid";
+import InstagramFeed from "../components/InstagramFeed";
+import Testimonials from "../components/Testimonials";
+import CallToAction from "../components/CallToAction";
 
 export default function PhotoPage() {
   const [photoItems, setPhotoItems] = useState<JSX.Element[]>([]);
@@ -11,6 +14,7 @@ export default function PhotoPage() {
       .getEntries({ content_type: "portfolioItem" })
       .then((response) => {
         const mapped = response.items
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
           .map((item: any, idx: number) => {
             const fields: PortfolioItem["fields"] = item.fields;
             const media = fields.media;
@@ -60,26 +64,18 @@ export default function PhotoPage() {
         <Grid items={photoItems} columns={{ xs: 12, md: 6, lg: 4 }} />
       </section>
 
-      {/* Testimonial / Value Prop */}
-      <section className="bg-light py-5 text-center">
-        <div className="container">
-          <blockquote className="blockquote">
-            <p className="mb-3">
-              "Trevor & Sarah captured our special moments perfectly! Every
-              photo tells a beautiful story — we couldn’t be happier."
-            </p>
-            <footer className="blockquote-footer">Happy Couple</footer>
-          </blockquote>
-        </div>
-      </section>
+  {/* Testimonials */}
+      <Testimonials variant="carousel" className="bg-light-100" />
 
-      {/* Contact / Form Placeholder */}
-      <section className="container my-5">
-        <h2 className="text-center mb-4">Get in Touch</h2>
-        <div className="border rounded p-5 text-center">
-          <p>Form Placeholder</p>
-        </div>
-      </section>
+     <CallToAction
+        heading="Like what you see?"
+        subheading="Give us a shout and let's create something beautiful together."
+        bgColor="#2b2b2b"
+        textColor="#fff"
+        buttonText="Get in Touch"
+        buttonLink="/contact"
+      />
+      <InstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
     </>
   );
 }
