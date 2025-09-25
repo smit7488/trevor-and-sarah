@@ -70,9 +70,11 @@ export default function HomePage() {
                 care—so you can relive your memories for years to come.
               </p>
               <div className="mt-4">
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 <Button as={Link as any} to="/video" variant="outline-dark" className="me-3">
                   Explore Video
                 </Button>
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 <Button as={Link as any} to="/photo" variant="outline-dark">
                   Explore Photo
                 </Button>
@@ -100,6 +102,7 @@ export default function HomePage() {
             <Card.Body>
               <Card.Title><strong>{service.title}</strong></Card.Title>
               <Card.Text>{service.description}</Card.Text>
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               <Button variant="outline-dark" as={Link as any} to={`/services#${service.title.toLowerCase()}`}>
                 Learn More
               </Button>
@@ -131,6 +134,7 @@ export default function HomePage() {
                 cupidatat non proident.
               </p>
               <div className="mt-4">
+               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 <Button as={Link as any} to="/about" variant="outline-dark">
                   Learn More
                 </Button>
@@ -151,7 +155,7 @@ export default function HomePage() {
       {/* Testimonials */}
       <Testimonials variant="carousel" className="bg-light-100" />
 
-      <InstagramFeed instagramUrl="https://www.instagram.com/yourprofile" />
+      <InstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
     </>
   );
 }

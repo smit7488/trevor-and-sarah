@@ -14,8 +14,10 @@ export default function VideoPage() {
         content_type: "portfolioItem",
         include: 2, // ensures linked entries like genres are included
       })
+      
       .then((response: any) => {
         const mapped = response.items
+        
           .map((item: any, idx: number) => {
             const fields = item.fields;
             const media = fields.media;

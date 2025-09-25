@@ -1,12 +1,12 @@
 import MediaHero from "../components/MediaHero";
-import heroImg from "../assets/hero-image-min.avif";
+import heroImage from "../assets/hero-image-min.avif";
 
 export default function AboutPage() {
   return (
     <>
       {/* Full-width hero */}
       <MediaHero
-        videoSrc= {heroImg} // can swap with imageSrc="/assets/about-hero.jpg"
+        imageSrc= {heroImage} 
         overlayContent={
           <>
             <h1 className="text-uppercase hero-overlay">About Us</h1>

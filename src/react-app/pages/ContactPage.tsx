@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import MediaHero from "../components/MediaHero";
-import heroVideo from "../assets/hero-video.mp4";
+import heroVideo from "../assets/hero-bg-v1.mp4";
+import heroImage from "../assets/hero-bg-v1.avif";
 import tsLogo from "../assets/trevor-and-sarah-logo-vertical-white.svg";
 import ContactForm from "../components/ContactForm";
 
@@ -10,6 +11,7 @@ export default function ContactPage() {
       {/* Hero Section */}
      <MediaHero
         videoSrc={heroVideo}
+        imageSrc={heroImage}
         overlayContent={
           <>
             <img

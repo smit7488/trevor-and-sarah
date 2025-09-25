@@ -1,3 +1,12 @@
+// Media asset file details type
+export interface ContentfulFileDetails {
+  size?: number; // file size in bytes
+  image?: {
+    width: number;
+    height: number;
+  };
+}
+
 // Media asset type
 export interface ContentfulAsset {
   fields: {
@@ -5,7 +14,7 @@ export interface ContentfulAsset {
       url: string;
       contentType: string;
       fileName?: string;
-      details?: any;
+      details?: ContentfulFileDetails; // <-- replace 'any' with typed interface
     };
     title?: string;
     description?: string;
@@ -42,11 +51,11 @@ export interface PortfolioItem {
     media?: ContentfulAsset;
     location?: ContentfulLocation;
     embed?: string;
-    genre?: Genre[]; // <-- updated
+    genre?: Genre[];
   };
 }
 
-
+// Testimonial content type
 export interface Testimonial {
   sys: {
     id: string;
