@@ -13,6 +13,7 @@ export default function ComingSoon() {
       <MediaHero
         videoSrc={heroVideo}
         imageSrc={heroImage}
+        textColor="#fff"
         className="coming-soon-hero" 
         overlayContent={
           <>

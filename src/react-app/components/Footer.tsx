@@ -20,7 +20,9 @@ const Footer: React.FC = () => {
             />
           </Col>
           <Col md={6} className="text-center text-md-end">
-            <a href="/privacy" className="me-3 footer-link">Privacy Policy</a>
+     
+            <a href="/privacy-policy" className="me-3 footer-link">Privacy Policy</a>
+            <a href="/terms" className="me-3 footer-link">Terms & Conditions</a>
             <a href="/contact" className="footer-link">Contact</a>
           </Col>
         </Row>

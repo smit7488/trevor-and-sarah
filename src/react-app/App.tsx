@@ -7,15 +7,18 @@ import PhotoPage from "./pages/PhotoPage";
 import VideoPage from "./pages/VideoPage";
 import ContactPage from "./pages/ContactPage";
 import ComingSoon from "./pages/ComingSoon";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 import usePageTracking from "./hooks/usePageTracking";
 import { useFavicon } from "./hooks/useFavicon";
 import lightIcon from "./assets/ts-icon.svg";
 import darkIcon from "./assets/ts-icon-white.svg";
 
-const IS_COMING_SOON = true; // toggle or use env variable
+const IS_COMING_SOON = false; // toggle or use env variable
 
 function App() {
-   useFavicon(lightIcon, darkIcon);
+  useFavicon(lightIcon, darkIcon);
+
   if (IS_COMING_SOON) {
     return <ComingSoon />;
   }
@@ -31,6 +34,8 @@ function App() {
           <Route path="/photo" element={<PhotoPage />} />
           <Route path="/video" element={<VideoPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
         </Routes>
         <Footer />
       </PageTrackingWrapper>

@@ -21,12 +21,6 @@ export interface ContentfulAsset {
   };
 }
 
-// Location type
-export interface ContentfulLocation {
-  lat: number;
-  lon: number;
-}
-
 // Genre entry type
 export interface Genre {
   sys: {
@@ -49,9 +43,10 @@ export interface PortfolioItem {
     description: string;
     category: string;
     media?: ContentfulAsset;
-    location?: ContentfulLocation;
+    location?: string;
     embed?: string;
     genre?: Genre[];
+    photos?: ContentfulAsset[];
   };
 }
 

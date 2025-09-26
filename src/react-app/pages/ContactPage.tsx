@@ -12,6 +12,7 @@ export default function ContactPage() {
      <MediaHero
         videoSrc={heroVideo}
         imageSrc={heroImage}
+        textColor="#fff"
         overlayContent={
           <>
             <img

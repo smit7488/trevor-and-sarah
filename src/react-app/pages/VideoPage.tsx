@@ -1,7 +1,8 @@
 import { useEffect, useState, JSX } from "react";
 import client from "../contentfulClient";
 import Grid from "../components/Grid";
-import BasicHero from "../components/BasicHero";
+import MediaHero from "../components/MediaHero";
+import heroImage from "../assets/hero-bg-v1.avif";
 import Testimonials from "../components/Testimonials";
 import Badge from "react-bootstrap/Badge";
 import InstagramFeed from "../components/InstagramFeed";
@@ -49,12 +50,10 @@ export default function VideoPage() {
                 )}
 
                 {typeof embed === "string" && !contentType.startsWith("video/") && (
-                  <div className="embed-responsive embed-responsive-16by9 mb-3">
+                  <div className="embed-container mb-3">
                     <iframe
                       src={embed}
                       title={fields.title}
-                      className="w-100"
-                      height={200}
                       frameBorder={0}
                       allowFullScreen
                     />
@@ -88,12 +87,20 @@ export default function VideoPage() {
 
   return (
     <>
-      <BasicHero title="Film" />
+       
+
+<MediaHero
+  imageSrc={heroImage}
+  overlayContent={<h1>Film</h1>}
+  height="half"
+  photoOnly
+  textColor="#fff"
+/>
 
       {/* Video Grid */}
-      <section className="my-5">
+      <section className="grid-mt-n5 mb-5">
 
-        <Grid items={videoItems} columns={{ xs: 12, md: 6, lg: 4 }} />
+        <Grid items={videoItems} className="position-relative z-2" columns={{ xs: 12, md: 6, lg: 6 }} />
       </section>
 
      <Testimonials variant="carousel" />

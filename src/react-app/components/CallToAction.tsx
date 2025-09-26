@@ -6,6 +6,7 @@ interface CallToActionProps {
   heading: string;
   subheading?: string;
   bgColor?: string; // optional background color
+  bgImage?: string; // optional 
   textColor?: string; // optional text color
   buttonText?: string;
   buttonLink?: string;
@@ -15,6 +16,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
   heading,
   subheading,
   bgColor = "#1a1a1a",
+  bgImage = "url(/assets/TS-Logo-Pattern-01.avif)",
   textColor = "#ffffff",
   buttonText = "Contact Us",
   buttonLink = "/contact",
@@ -22,7 +24,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
   return (
     <section
       className="py-5 text-center"
-      style={{ backgroundColor: bgColor, color: textColor }}
+      style={{ backgroundColor: bgColor, color: textColor, backgroundImage: bgImage, backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
       <Container>
         <h2 className="mb-3" style={{ color: textColor }}>{heading}</h2>

@@ -25,6 +25,7 @@ export default function HomePage() {
       <MediaHero
         videoSrc={heroVideo}
         imageSrc={heroImage}
+        textColor="#fff"
         overlayContent={
           <>
             <img

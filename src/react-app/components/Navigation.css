@@ -10,6 +10,16 @@
   }
 }
 
+.nav-link {
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .85rem;
+}
+.dropdown-item {
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .85rem;
+}
 /* Logo hover */
 .navbar-brand img {
   transition: filter 0.3s ease;
@@ -23,3 +33,18 @@
   color: #1a1a1a;
 }
 
+
+/* Smooth fade + slide down for dropdown menu */
+.navbar .dropdown-menu {
+  display: block; /* keep it block for transition */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  visibility: hidden;
+}
+
+.navbar .show.dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
