@@ -149,3 +149,18 @@ button:disabled {
 
 .xx-small { font-size: 0.75rem; }
 .x-small  { font-size: 0.875rem; }
+
+
+.team-card {
+  cursor: pointer;
+}
+
+.team-card .team-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.team-card:hover .team-overlay {
+  opacity: 1;
+}

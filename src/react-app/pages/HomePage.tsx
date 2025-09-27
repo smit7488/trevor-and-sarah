@@ -11,12 +11,33 @@ import CallToAction from "../components/CallToAction";
 
 export default function HomePage() {
 
-  const services = [
-    { title: "Weddings", description: "Capture your special day with cinematic video and beautiful photos." },
-    { title: "Engagements", description: "Celebrate your love with stunning engagement sessions." },
-    { title: "Family", description: "Family portraits that capture genuine moments and connections." },
-    { title: "Portraits", description: "Professional portraits for individuals or couples, tailored to your style." },
-  ]; 
+const services = [
+  { 
+    title: "Weddings", 
+    description: "Capture your special day with cinematic video and beautiful photos." 
+  },
+  { 
+    title: "Engagements", 
+    description: "Celebrate your love with stunning engagement sessions." 
+  },
+  { 
+    title: "Family", 
+    description: "Family portraits that capture genuine moments and connections." 
+  },
+  { 
+    title: "Portraits", 
+    description: "Professional portraits for individuals or couples, tailored to your style." 
+  },
+  { 
+    title: "Events", 
+    description: "From corporate gatherings to parties, we capture every moment with cinematic video and beautiful photos." 
+  },
+  { 
+    title: "Real Estate & Construction", 
+    description: "Showcase properties with professional photography and video that highlights every detail." 
+  },
+];
+
 
 
   return (

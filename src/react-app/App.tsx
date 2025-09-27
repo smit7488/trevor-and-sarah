@@ -7,6 +7,7 @@ import PhotoPage from "./pages/PhotoPage";
 import VideoPage from "./pages/VideoPage";
 import ContactPage from "./pages/ContactPage";
 import ComingSoon from "./pages/ComingSoon";
+import Services from "./pages/Services";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import usePageTracking from "./hooks/usePageTracking";
@@ -34,6 +35,7 @@ function App() {
           <Route path="/photo" element={<PhotoPage />} />
           <Route path="/video" element={<VideoPage />} />
           <Route path="/contact" element={<ContactPage />} />
+           <Route path="/services" element={<Services />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
         </Routes>
