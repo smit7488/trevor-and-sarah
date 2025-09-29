@@ -32,8 +32,8 @@ export default function PhotoPage() {
               const mediaUrl = `https:${photo.fields.file.url}`;
 
               // Pull title/description from the asset itself, fallback to portfolio item
-              const photoTitle = photo.fields.title || fields.title;
-              const photoDescription = photo.fields.description || fields.description;
+              // const photoTitle = photo.fields.title || fields.title;
+              // const photoDescription = photo.fields.description || fields.description;
 
               return (
                 <div
