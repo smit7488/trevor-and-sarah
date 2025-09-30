@@ -5,26 +5,27 @@ interface MediaHeroProps {
   videoSrc?: string;
   imageSrc: string;
   overlayContent?: React.ReactNode;
+  wireblock?: string; // optional
   height?: "full" | "half";
   photoOnly?: boolean;
   className?: string;
-  textColor?: string; // optional text color
+  textColor?: string;
 }
 
 const MediaHero: React.FC<MediaHeroProps> = ({
   videoSrc,
   imageSrc,
   overlayContent,
+  wireblock,
   height = "full",
   photoOnly = false,
   className = "",
-  textColor = "#1a1a1a", // default text color
+  textColor = "#1a1a1a",
 }) => {
   const heightStyle: React.CSSProperties = {
     height: height === "full" ? "100vh" : "50vh",
   };
 
-  // Helper: recursively apply text color to all overlay content
   const applyTextColor = (content: React.ReactNode): React.ReactNode => {
     if (!content) return null;
 
@@ -37,14 +38,18 @@ const MediaHero: React.FC<MediaHeroProps> = ({
       return React.cloneElement(
         element,
         {
-          ...(element.props.style !== undefined && { style: { ...(element.props.style || {}), color: textColor } }),
+          ...(element.props.style !== undefined && {
+            style: { ...(element.props.style || {}), color: textColor },
+          }),
         },
         applyTextColor(element.props.children)
       );
     }
 
     if (Array.isArray(content)) {
-      return content.map((child, idx) => <React.Fragment key={idx}>{applyTextColor(child)}</React.Fragment>);
+      return content.map((child, idx) => (
+        <React.Fragment key={idx}>{applyTextColor(child)}</React.Fragment>
+      ));
     }
 
     return content;
@@ -55,6 +60,7 @@ const MediaHero: React.FC<MediaHeroProps> = ({
       className={`media-hero position-relative ${className}`}
       style={{ width: "100%", overflow: "hidden", ...heightStyle }}
     >
+      {/* Base image */}
       <img
         src={imageSrc}
         alt="Hero fallback"
@@ -62,6 +68,7 @@ const MediaHero: React.FC<MediaHeroProps> = ({
         style={{ zIndex: 0 }}
       />
 
+      {/* Optional video */}
       {!photoOnly && videoSrc && (
         <video
           className="w-100 h-100 object-fit-cover position-relative"
@@ -75,10 +82,23 @@ const MediaHero: React.FC<MediaHeroProps> = ({
         </video>
       )}
 
+      {/* Wireblock container only if wireblock exists */}
+      {wireblock && (
+        <div className="container h-100 d-flex justify-content-center align-items-center position-relative">
+          <img
+            src={wireblock}
+            alt="Wireblock overlay"
+            className="media-hero-wireblock position-absolute"
+            style={{ zIndex: 2 }}
+          />
+        </div>
+      )}
+
+      {/* Overlay text/content */}
       {overlayContent && (
         <div
           className="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center media-hero-overlay"
-          style={{ zIndex: 2 }}
+          style={{ zIndex: 3 }}
         >
           {applyTextColor(overlayContent)}
         </div>

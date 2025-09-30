@@ -37,3 +37,10 @@
 h1.hero-overlay {
   color: #ffffff;
 }
+
+.media-hero-wireblock {
+    bottom: -2rem;
+    right: -2rem;
+    pointer-events: none;
+    max-width: 350px;
+}

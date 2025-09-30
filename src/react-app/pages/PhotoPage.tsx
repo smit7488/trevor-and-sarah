@@ -6,7 +6,8 @@ import InstagramFeed from "../components/InstagramFeed";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
 import MediaHero from "../components/MediaHero";
-import heroImage from "../assets/hero-bg-v1.avif";
+import heroImage from "../assets/ts-logo-bg.jpg";
+import wireblock from "../assets/photo-wireblock.svg";
 import Badge from "react-bootstrap/Badge";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
@@ -47,32 +48,36 @@ export default function PhotoPage() {
                   />
 
                   <div className="overlay absolute bottom-0 left-0 w-100 bg-[#1a1a1a]/60 text-white p-3 translate-y-full transition-transform duration-300 d-flex flex-column justify-content-end">
-  {/* Top line: Portfolio title + location */}
-  <div className="d-flex justify-content-between align-items-center mb-1" style={{ gap: "0.25rem" }}>
-     {/* <h5 className="fw-bold mb-0 text-truncate text-light">{fields.title}</h5> */}
- {/* Photo asset info */}
-  {photo.fields.title && (
+                    {/* Top line: Portfolio title + location */}
+                    <div className="d-flex justify-content-between align-items-center mb-1 gap-1">
+                      {/* <h5 className="fw-bold mb-0 text-truncate text-light">{fields.title}</h5> */}
+                      {/* Photo asset info */}
+                      {/* photo.fields.title && (
     <h6 className="fw-bold mb-0 text-truncate text-light">{photo.fields.title}</h6>
-  )}
-    {fields.location && (
-      <div className="d-flex align-items-center text-muted small ms-2">
-        <FaMapMarkerAlt className="me-1 text-light xx-small" />
-        <span className="text-truncate text-light xx-small">{fields.location} </span>
-      </div>
-    )}
-  </div>
+  )*/}
+                      <div>
+                        {photo.fields.description && (
+                          <p className="mb-0 xx-small text-light">{photo.fields.description}</p>
+                        )}
+                      </div>
 
-  {/* Portfolio description 
+                      {fields.location && (
+                        <div className="d-flex align-items-center text-muted small">
+                          <FaMapMarkerAlt className="me-1 text-light xx-small" />
+                          <span className="text-truncate text-light xx-small mb-0">{fields.location} </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Portfolio description 
   {fields.description && (
     <p className="mb-1 small text-truncate text-light">{fields.description}</p>
   )} */}
 
- 
-  {photo.fields.description && (
-    <p className="mb-1 small text-truncate text-light">{photo.fields.description}</p>
-  )}
 
-      {/* Genre Badges */}
+
+
+                    {/* Genre Badges */}
                     <div className="mb-0">
                       {genres.map((genre: any, gIdx: number) => {
                         const title = genre?.fields?.name || "Unknown Genre"; // or title if your field is called that
@@ -83,7 +88,7 @@ export default function PhotoPage() {
                         );
                       })}
                     </div>
-</div>
+                  </div>
                 </div>
               );
             });
@@ -97,32 +102,37 @@ export default function PhotoPage() {
   }, []);
 
   const breakpointColumnsObj = {
-    default: 5, // desktop
-    992: 3,     // tablet
-    576: 2,     // mobile
+    default: 3,   // large desktop
+    1200: 3,      // medium screens
+    992: 2,       // tablet
+    576: 1,       // mobile
   };
 
   return (
     <>
       <MediaHero
         imageSrc={heroImage}
-        overlayContent={<h1>Photo</h1>}
+        overlayContent={<h1 className="text-uppercase">Photo</h1>}
         height="half"
         photoOnly
+        wireblock={wireblock}
         textColor="#fff"
+
       />
 
       {/* Photo Grid - Masonry */}
-      <section className="grid-mt-n5 mb-5 mx-3 position-relative z-2">
+      <div className="container grid-mt-n5 mb-5 position-relative z-3">
+        <section>
 
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="masonry-grid"
-          columnClassName="masonry-grid_column"
-        >
-          {photoItems}
-        </Masonry>
-      </section>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="masonry-grid"
+            columnClassName="masonry-grid_column"
+          >
+            {photoItems}
+          </Masonry>
+        </section>
+      </div>
 
       {/* Testimonials */}
       <Testimonials variant="carousel" className="bg-light-100" />

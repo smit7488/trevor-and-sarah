@@ -2,7 +2,8 @@ import { useEffect, useState, JSX } from "react";
 import client from "../contentfulClient";
 import Grid from "../components/Grid";
 import MediaHero from "../components/MediaHero";
-import heroImage from "../assets/hero-bg-v1.avif";
+import heroImage from "../assets/ts-logo-bg.jpg";
+import wireblock from "../assets/video-wireblock.svg";
 import Testimonials from "../components/Testimonials";
 import Badge from "react-bootstrap/Badge";
 import InstagramFeed from "../components/InstagramFeed";
@@ -91,16 +92,17 @@ export default function VideoPage() {
 
 <MediaHero
   imageSrc={heroImage}
-  overlayContent={<h1>Film</h1>}
+  overlayContent={<h1 className="text-uppercase">Video</h1>}
   height="half"
   photoOnly
+  wireblock={wireblock} 
   textColor="#fff"
 />
 
       {/* Video Grid */}
       <section className="grid-mt-n5 mb-5">
 
-        <Grid items={videoItems} className="position-relative z-2" columns={{ xs: 12, md: 6, lg: 6 }} />
+        <Grid items={videoItems} className="position-relative z-3" columns={{ xs: 12, md: 6, lg: 6 }} />
       </section>
 
      <Testimonials variant="carousel" />
