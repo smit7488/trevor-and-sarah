@@ -16,7 +16,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
   heading,
   subheading,
   bgColor = "#1a1a1a",
-  bgImage = "url(/assets/TS-Logo-Pattern-01.avif)",
+  bgImage = "url(/assets/media/TS-Logo-Pattern-01.avif)",
   textColor = "#ffffff",
   buttonText = "Contact Us",
   buttonLink = "/contact",

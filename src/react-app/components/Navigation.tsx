@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import TsLogo from "../assets/trevor-and-sarah-logo-horizontal.svg";
+import TsLogo from "../assets/media/trevor-and-sarah-logo-horizontal.svg";
 import "./Navigation.css";
 
 const Navigation: React.FC = () => {

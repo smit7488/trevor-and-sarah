@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Form, Card, Spinner } from "react-bootstrap";
+import wireblock from "../assets/media/wireblocks/contact-wireblock.svg";
 
 interface ContactFormData {
   fullName: string;
@@ -10,6 +11,7 @@ interface ContactFormData {
   service: string;
   venue: string;
   hearAboutUs: string;
+  wireblock?: string; // optional
   importance: string;
   additionalInfo: string;
   "g-recaptcha-response": string;
@@ -78,9 +80,10 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-5 bg-light">
+    <section className="pb-5 bg-light">
       <Container>
-        <Row className="justify-content-center">
+        <Row className="justify-content-center grid-mt-n5 z-3 position-relative">
+          
           <Col xs={12} md={10} lg={8}>
             <Card className="shadow-sm rounded border-0 p-4 p-md-5">
               {success ? (
@@ -234,8 +237,20 @@ export default function ContactForm() {
                 </Form>
               )}
             </Card>
+            
           </Col>
         </Row>
+              {/* Wireblock container only if wireblock exists */}
+      {wireblock && (
+        <div className="container h-100 d-flex justify-content-center align-items-center position-relative">
+          <img
+            src={wireblock}
+            alt="Wireblock overlay"
+            className="media-hero-wireblock position-absolute"
+            style={{ zIndex: 2 }}
+          />
+        </div>
+      )}
       </Container>
     </section>
   );

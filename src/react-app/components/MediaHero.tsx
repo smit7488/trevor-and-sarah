@@ -22,9 +22,11 @@ const MediaHero: React.FC<MediaHeroProps> = ({
   className = "",
   textColor = "#1a1a1a",
 }) => {
-  const heightStyle: React.CSSProperties = {
-    height: height === "full" ? "100vh" : "50vh",
-  };
+ const navHeight = 64; // px, adjust to match your nav
+
+const heightStyle: React.CSSProperties = {
+  height: height === "full" ? `calc(100vh - ${navHeight}px)` : "50vh",
+};
 
   const applyTextColor = (content: React.ReactNode): React.ReactNode => {
     if (!content) return null;

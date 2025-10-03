@@ -1,7 +1,7 @@
 .media-hero {
   position: relative;
   width: 100%;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 67px);
   overflow: hidden;
   display: flex;
   align-items: center;

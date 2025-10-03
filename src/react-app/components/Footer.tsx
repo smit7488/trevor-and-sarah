@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
-import tsLogo from "../assets/trevor-and-sarah-logo-horizontal-white.svg";
+import tsLogo from "../assets/media/trevor-and-sarah-logo-horizontal-white.svg";
 import { FaMapMarkerAlt, FaFacebookF, FaYoutube, FaInstagram } from "react-icons/fa";
 import "./Footer.css";
 
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
 
   {/* Links */}
   <Col xs={12} md={6} className="d-flex justify-content-center justify-content-md-end">
-    <div className="d-flex flex-wrap justify-content-center gap-2">
+    <div className="d-flex flex-wrap justify-content-center gap-3">
       <a href="/privacy-policy" className="footer-link">Privacy Policy</a>
       <a href="/terms" className="footer-link">Terms & Conditions</a>
       <a href="/contact" className="footer-link">Contact</a>
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
           </Col>
 
           <Col className="d-flex justify-content-center col-12">
-            <div className="social-icons d-flex gap-3" style={{ color: "#fff" }}>
+            <div className="social-icons d-flex gap-3">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
                 <FaFacebookF />
               </a>

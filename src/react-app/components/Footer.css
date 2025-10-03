@@ -18,4 +18,9 @@
   text-decoration: underline;
 }
 
+.social-icons a {
+  color: #ffffff;
+  font-size: 1.25rem;
+  transition: color 0.3s;
+}
 

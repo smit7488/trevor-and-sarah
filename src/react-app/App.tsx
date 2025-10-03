@@ -12,10 +12,10 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import usePageTracking from "./hooks/usePageTracking";
 import { useFavicon } from "./hooks/useFavicon";
-import lightIcon from "./assets/ts-icon.svg";
-import darkIcon from "./assets/ts-icon-white.svg";
+import lightIcon from "./assets/media/ts-icon.svg";
+import darkIcon from "./assets/media/ts-icon-white.svg";
 
-const IS_COMING_SOON = true; // toggle or use env variable
+const IS_COMING_SOON = false; // toggle or use env variable
 
 function App() {
   useFavicon(lightIcon, darkIcon);

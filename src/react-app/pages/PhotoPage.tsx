@@ -6,8 +6,8 @@ import InstagramFeed from "../components/InstagramFeed";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
 import MediaHero from "../components/MediaHero";
-import heroImage from "../assets/ts-logo-bg.jpg";
-import wireblock from "../assets/photo-wireblock.svg";
+import heroImage from "../assets/media/ts-logo-bg.jpg";
+import wireblock from "../assets/media/wireblocks/photo-wireblock.svg";
 import Badge from "react-bootstrap/Badge";
 import { FaMapMarkerAlt } from "react-icons/fa";
 

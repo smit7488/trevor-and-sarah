@@ -1,7 +1,7 @@
 import MediaHero from "../components/MediaHero";
-import heroVideo from "../assets/hero-bg-v1.mp4";
-import heroImage from "../assets/hero-bg-v1.avif";
-import tsLogo from "../assets/trevor-and-sarah-logo-vertical-white.svg";
+import heroVideo from "../assets/media/hero-bg-v1.mp4";
+import heroImage from "../assets/media/hero-bg-v1.avif";
+import tsLogo from "../assets/media/trevor-and-sarah-logo-vertical-white.svg";
 
 
 

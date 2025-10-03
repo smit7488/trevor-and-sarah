@@ -1,14 +1,14 @@
 import MediaHero from "../components/MediaHero";
-import heroImage from "../assets/hero-bg-v1.avif";
-import heroVideo from "../assets/hero-bg-v1.mp4";
-import tsLogo from "../assets/trevor-and-sarah-logo-vertical-white.svg";
-import aboutImage from "../assets/IG-image.jpg"; 
-import trevorImage from "../assets/trevor.jpg";
-import sarahImage from "../assets/Sarah.avif";
+import heroImage from "../assets/media/ts-logo-bg.jpg";
+import wireblock from "../assets/media/wireblocks/ts-wireblock.svg";
+import aboutImage from "../assets/media/IG-image.jpg"; 
+import trevorImage from "../assets/media/trevor.jpg";
+import sarahImage from "../assets/media/Sarah.avif";
 import InstagramFeed from "../components/InstagramFeed";
 import Testimonials from "../components/Testimonials";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 
 export default function AboutPage() {
   const teamMembers = [
@@ -16,51 +16,33 @@ export default function AboutPage() {
       name: "Trevor",
       role: "Lead Photographer & Videographer",
       img: trevorImage,
-      bio: "Passionate about storytelling through the lens and creating cinematic experiences."
+      bio: "Trevor is a Web Designer and Developer by profession, but his creative journey began with filming skateboarding videos growing up. That passion for storytelling evolved into a love for cinematic videography and photography. Outside of work, he and Sarah have traveled to five different countries together, creating travel films that showcase their shared eye for capturing meaningful experiences."
     },
     {
       name: "Sarah",
       role: "Co-Photographer & Creative Director",
       img: sarahImage,
-      bio: "Specializes in capturing authentic moments and designing visually striking compositions."
+      bio: "Sarah works full-time as a Project Manager, balancing her professional career with her passion for photography and creative direction. She has a gift for capturing authentic, natural moments and turning them into striking visual stories. Since meeting Trevor in 2023, she has joined him in documenting their adventures around the world and co-creating cinematic travel videos."
     }
   ];
 
   return (
     <>
-      {/* Full-width hero */}
-       {/* Hero */}
       <MediaHero
-        videoSrc={heroVideo}
         imageSrc={heroImage}
+        overlayContent={<h1 className="text-uppercase">About Us</h1>}
+        height="half"
+        photoOnly
+        wireblock={wireblock}
         textColor="#fff"
-        overlayContent={
-          <>
-            <img
-              src={tsLogo}
-              className="logo trevorandsarah"
-              alt="Trevor & Sarah logo"
 
-            />
-            <p
-              className="text-uppercase mt-5"
-              style={{ letterSpacing: "0.15em" }}
-            >
-              Coming Soon!
-            </p>
-          </>
-        }
       />
 
       {/* Our Story */}
       <section className="container my-5">
         <h2 className="text-center mb-4">Our Story</h2>
         <p className="lead text-center">
-          We believe in capturing the magic of every moment.
-          From intimate family portraits to cinematic wedding films, our goal
-          is to create timeless memories that you’ll treasure forever. With
-          passion, creativity, and a commitment to excellence, we make your
-          vision come to life.
+         Hi! We're Trevor and Sarah, a creative couple based in Rochester, NY. We're passionate about capturing life's most meaningful moments through film and photography—from family portraits to cinematic wedding films. Our goal is to create timeless memories you'll treasure forever.
         </p>
       </section>
 

@@ -2,8 +2,8 @@ import { useEffect, useState, JSX } from "react";
 import client from "../contentfulClient";
 import Grid from "../components/Grid";
 import MediaHero from "../components/MediaHero";
-import heroImage from "../assets/ts-logo-bg.jpg";
-import wireblock from "../assets/video-wireblock.svg";
+import heroImage from "../assets/media/ts-logo-bg.jpg";
+import wireblock from "../assets/media/wireblocks/video-wireblock.svg";
 import Testimonials from "../components/Testimonials";
 import Badge from "react-bootstrap/Badge";
 import InstagramFeed from "../components/InstagramFeed";
@@ -55,8 +55,8 @@ export default function VideoPage() {
                     <iframe
                       src={embed}
                       title={fields.title}
-                      frameBorder={0}
                       allowFullScreen
+
                     />
                   </div>
                 )}
