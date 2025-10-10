@@ -4,7 +4,12 @@ import MediaHero from "../components/MediaHero";
 import heroVideo from "../assets/media/hero-bg-v1.mp4";
 import heroImage from "../assets/media/hero-bg-v1.avif";
 import tsLogo from "../assets/media/trevor-and-sarah-logo-vertical-white.svg";
-import aboutImage from "../assets/media/IG-image.jpg"; 
+import aboutImage from "../assets/media/homepage-us.avif"; 
+import homepageAboutImage from "../assets/media/homepage-about.avif";
+import weddingImage from "../assets/media/homepage-wedding-tile.avif";
+import familyImage from "../assets/media/homepage-family.avif";
+import eventsImage from "../assets/media/homepage-events.avif";
+import realEstateImage from "../assets/media/homepage-construction.avif";
 import Testimonials from "../components/Testimonials";
 import InstagramFeed from "../components/InstagramFeed";
 import CallToAction from "../components/CallToAction";
@@ -13,30 +18,27 @@ export default function HomePage() {
 
 const services = [
   { 
-    title: "Weddings", 
-    description: "Capture your special day with cinematic video and beautiful photos." 
+    title: "Weddings & Engagements", 
+    description: "Capture your special day with cinematic video. Celebrate your love with stunning engagement sessions.",
+    image: weddingImage
   },
   { 
-    title: "Engagements", 
-    description: "Celebrate your love with stunning engagement sessions." 
-  },
-  { 
-    title: "Family", 
-    description: "Family portraits that capture genuine moments and connections." 
-  },
-  { 
-    title: "Portraits", 
-    description: "Professional portraits for individuals or couples, tailored to your style." 
+    title: "Family & Portraits", 
+    description: "Family portraits that capture genuine moments and connections. Professional portraits for individuals or couples, tailored to your style.",
+    image: familyImage
   },
   { 
     title: "Events", 
-    description: "From corporate gatherings to parties, we capture every moment with cinematic video and beautiful photos." 
+    description: "From corporate gatherings to parties, we capture every moment with cinematic video and beautiful photos.",
+    image: eventsImage
   },
   { 
     title: "Real Estate & Construction", 
-    description: "Showcase properties with professional photography and video that highlights every detail." 
+    description: "Showcase properties with professional photography and video that highlights every detail.",
+    image: realEstateImage
   },
 ];
+
 
 
 
@@ -53,13 +55,14 @@ const services = [
               src={tsLogo}
               className="logo trevorandsarah"
               alt="Trevor & Sarah logo"
+              loading="eager"
 
             />
             <p
               className="text-uppercase mt-5"
               style={{ letterSpacing: "0.15em" }}
             >
-              Coming Soon!
+             ↓ Your Story, Beautifully Told ↓
             </p>
           </>
         }
@@ -70,25 +73,25 @@ const services = [
         <Container>
           <Row className="align-items-center row-gap-4">
             {/* Left Image */}
-            <Col md={6}>
+            <Col md={4}>
               <img
-                src={aboutImage}
+                src={homepageAboutImage}
                 alt="Film and Photo Example"
                 className="img-fluid rounded shadow"
               />
             </Col>
             {/* Right Text */}
-            <Col md={6}>
+            <Col md={8}>
               <h2 className="mb-4">Capturing Life, One Frame at a Time</h2>
               <p>
-                We believe that the best photos and videos don’t just show what
+                We believe that the best photos and videos don't just show what
                 happened—they make you feel it. From weddings and family
                 portraits to events, food photography, and travel, our goal is
                 to create timeless work that reflects genuine moments and
                 emotions.
               </p>
               <p>
-                Whether you’re looking for cinematic storytelling or a simple,
+                Whether you're looking for cinematic storytelling or a simple,
                 elegant portrait, we approach every project with creativity and
                 care—so you can relive your memories for years to come.
               </p>
@@ -117,7 +120,7 @@ const services = [
           <Card className="h-100 shadow-sm text-center border-0">
             <Card.Img
               variant="top"
-              src={aboutImage} // placeholder image
+              src={service.image}
               className="rounded-top"
               style={{ height: 180, objectFit: "cover" }}
             />
@@ -142,7 +145,7 @@ const services = [
         <Container>
           <Row className="align-items-center row-gap-4">
             {/* Left Text */}
-            <Col md={6}>
+            <Col md={8}>
               <h2 className="mb-4">About Us</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
@@ -163,7 +166,7 @@ const services = [
               </div>
             </Col>
             {/* Right Image */}
-            <Col md={6}>
+            <Col md={4}>
               <img
                 src={aboutImage}
                 alt="About Trevor & Sarah"

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Form, Card, Spinner } from "react-bootstrap";
-import wireblock from "../assets/media/wireblocks/contact-wireblock.svg";
+// import wireblock from "../assets/media/wireblocks/contact-wireblock.svg";
 
 interface ContactFormData {
   fullName: string;
@@ -11,7 +11,7 @@ interface ContactFormData {
   service: string;
   venue: string;
   hearAboutUs: string;
-  wireblock?: string; // optional
+  // wireblock?: string; // optional
   importance: string;
   additionalInfo: string;
   "g-recaptcha-response": string;
@@ -241,7 +241,8 @@ export default function ContactForm() {
           </Col>
         </Row>
               {/* Wireblock container only if wireblock exists */}
-      {wireblock && (
+    
+       {/* {wireblock && (
         <div className="container h-100 d-flex justify-content-center align-items-center position-relative">
           <img
             src={wireblock}
@@ -250,7 +251,7 @@ export default function ContactForm() {
             style={{ zIndex: 2 }}
           />
         </div>
-      )}
+      )}  */}
       </Container>
     </section>
   );

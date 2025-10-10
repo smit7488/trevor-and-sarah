@@ -46,10 +46,10 @@ const Footer: React.FC = () => {
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
                 <FaFacebookF />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <a href="https://www.youtube.com/@ts_filmphoto" target="_blank" rel="noopener noreferrer" className="social-icon">
                 <FaYoutube />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <a href="https://www.instagram.com/ts_filmphoto/" target="_blank" rel="noopener noreferrer" className="social-icon">
                 <FaInstagram />
               </a>
             </div>

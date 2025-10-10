@@ -1,9 +1,11 @@
 import MediaHero from "../components/MediaHero";
 import heroImage from "../assets/media/ts-logo-bg.jpg";
 import wireblock from "../assets/media/wireblocks/ts-wireblock.svg";
-import aboutImage from "../assets/media/IG-image.jpg"; 
 import trevorImage from "../assets/media/trevor.jpg";
 import sarahImage from "../assets/media/Sarah.avif";
+import approachImage from "../assets/media/about-approach.avif";
+import valuesImage from "../assets/media/about-values.avif";
+import whyImage from "../assets/media/about-why.avif";
 import InstagramFeed from "../components/InstagramFeed";
 import Testimonials from "../components/Testimonials";
 import { Container, Row, Col, Button } from "react-bootstrap";
@@ -79,7 +81,7 @@ export default function AboutPage() {
         <Container>
           <Row className="align-items-center row-gap-4">
             <Col md={4}>
-              <img src={aboutImage} alt="Our Approach" className="img-fluid rounded shadow" />
+              <img src={approachImage} alt="Our Approach" className="img-fluid rounded shadow" />
             </Col>
             <Col md={8}>
               <h2 className="mb-4">Our Approach</h2>
@@ -114,7 +116,7 @@ export default function AboutPage() {
               </div>
             </Col>
             <Col md={4}>
-              <img src={aboutImage} alt="Why Choose Us" className="img-fluid rounded shadow" />
+              <img src={whyImage} alt="Why Choose Us" className="img-fluid rounded shadow" />
             </Col>
           </Row>
         </Container>
@@ -125,7 +127,7 @@ export default function AboutPage() {
         <Container>
           <Row className="align-items-center row-gap-4">
             <Col md={4}>
-              <img src={aboutImage} alt="Our Values" className="img-fluid rounded shadow" />
+              <img src={valuesImage} alt="Our Values" className="img-fluid rounded shadow" />
             </Col>
             <Col md={8}>
               <h2 className="mb-4">Our Values</h2>
