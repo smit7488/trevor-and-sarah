@@ -6,8 +6,8 @@ import heroImage from "../assets/media/ts-logo-bg.jpg";
 import wireblock from "../assets/media/wireblocks/video-wireblock.svg";
 import Testimonials from "../components/Testimonials";
 import Badge from "react-bootstrap/Badge";
-import InstagramFeed from "../components/InstagramFeed";
 import CallToAction from "../components/CallToAction";
+import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
 
 export default function VideoPage() {
   const [videoItems, setVideoItems] = useState<JSX.Element[]>([]);
@@ -116,7 +116,7 @@ export default function VideoPage() {
         buttonLink="/contact"
       />
 
-    <InstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
+   <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" /> 
     </>
   );
 }

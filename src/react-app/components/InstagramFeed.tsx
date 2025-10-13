@@ -3,24 +3,17 @@ import { Container, Button, Image } from "react-bootstrap";
 import { FaInstagram } from "react-icons/fa";
 import "./InstagramFeed.css";
 
-const placeholderImages = [
-  "https://picsum.photos/id/1011/400/400",
-  "https://picsum.photos/id/1012/400/400",
-  "https://picsum.photos/id/1013/400/400",
-  "https://picsum.photos/id/1015/400/400",
-  "https://picsum.photos/id/1016/400/400",
-  "https://picsum.photos/id/1018/400/400",
-];
-
 interface InstagramFeedProps {
-  images?: string[];
+  images?: string[]; // Expect the dynamic URLs here
   instagramUrl?: string;
 }
 
 const InstagramFeed: React.FC<InstagramFeedProps> = ({
-  images = placeholderImages,
+  // Change the default from placeholders to an empty array
+  images = [], 
   instagramUrl = "#",
 }) => {
+  
   const visibleImages = images.slice(0, 6);
 
   return (

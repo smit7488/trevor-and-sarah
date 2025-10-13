@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
@@ -15,7 +16,7 @@ import { useFavicon } from "./hooks/useFavicon";
 import lightIcon from "./assets/media/ts-icon.svg";
 import darkIcon from "./assets/media/ts-icon-white.svg";
 
-const IS_COMING_SOON = true; // toggle or use env variable
+const IS_COMING_SOON = false; // toggle or use env variable
 
 function App() {
   useFavicon(lightIcon, darkIcon);
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <Router>
+        <ScrollToTop />
       {/* Hook must be inside Router */}
       <PageTrackingWrapper>
         <Navigation />

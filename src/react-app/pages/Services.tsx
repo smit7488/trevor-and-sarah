@@ -6,7 +6,7 @@ import heroImage from "../assets/media/hero-bg-v1.avif";
 import tsLogo from "../assets/media/trevor-and-sarah-logo-vertical-white.svg";
 import aboutImage from "../assets/media/IG-image.jpg"; 
 import Testimonials from "../components/Testimonials";
-import InstagramFeed from "../components/InstagramFeed";
+import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
 import CallToAction from "../components/CallToAction";
 
 export default function ServicesPage() {
@@ -134,7 +134,7 @@ We work closely with you to understand the vibe and key moments to capture, whet
       />
 
       {/* Instagram Feed */}
-      <InstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
+  <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" /> 
     </>
   );
 }

@@ -11,8 +11,8 @@ import familyImage from "../assets/media/homepage-family.avif";
 import eventsImage from "../assets/media/homepage-events.avif";
 import realEstateImage from "../assets/media/homepage-construction.avif";
 import Testimonials from "../components/Testimonials";
-import InstagramFeed from "../components/InstagramFeed";
 import CallToAction from "../components/CallToAction";
+import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
 
 export default function HomePage() {
 
@@ -148,15 +148,9 @@ const services = [
             <Col md={8}>
               <h2 className="mb-4">About Us</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident.
+             We're a creative couple with a shared love for storytelling, travel, and capturing the world through our lenses. What started as a few spontaneous adventures together has grown into a passion for creating cinematic films and natural, documentary-style photography. We love turning real moments into visual stories that feel honest, intentional, and full of life.</p>
+
+<p>By day, Sarah works as a Project Manager and Trevor as a Web Designer and Developer — but outside of work, we're almost always chasing light, new places, and meaningful experiences.
               </p>
               <div className="mt-4">
                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
@@ -190,7 +184,7 @@ const services = [
         buttonLink="/contact"
       />
 
-      <InstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
+      <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" /> 
     </>
   );
 }

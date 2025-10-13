@@ -2,7 +2,7 @@ import { useEffect, useState, JSX } from "react";
 import client from "../contentfulClient";
 import { PortfolioItem } from "../types/contentful";
 import Masonry from "react-masonry-css";
-import InstagramFeed from "../components/InstagramFeed";
+import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
 import MediaHero from "../components/MediaHero";
@@ -146,7 +146,7 @@ export default function PhotoPage() {
         buttonLink="/contact"
       />
 
-      <InstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
+       <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" /> 
     </>
   );
 }
