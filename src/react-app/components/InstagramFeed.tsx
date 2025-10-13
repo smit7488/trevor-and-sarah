@@ -46,7 +46,7 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({
         {/* Follow button overlay */}
         <div
           className="position-absolute top-50 start-50 translate-middle"
-          style={{ zIndex: 2 }}
+          style={{ zIndex: 2, whiteSpace: "nowrap" }}
         >
           <Button
             variant="dark"

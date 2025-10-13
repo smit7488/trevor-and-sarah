@@ -62,7 +62,7 @@ const services = [
               className="text-uppercase mt-5"
               style={{ letterSpacing: "0.15em" }}
             >
-             ↓ Your Story, Beautifully Told ↓
+             ↓&nbsp;Your&nbsp;Story, Beautifully&nbsp;Told&nbsp;↓
             </p>
           </>
         }
