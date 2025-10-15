@@ -26,20 +26,26 @@ main {
   /* Fonts */
   --font-family-base: "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  /* Brand / Bootstrap Colors */
-  --bs-primary: #f28c82;           /* Salmon */
-  --bs-primary-hover: #d96b63;
-  --bs-secondary: #eec35a;         /* Yellow/Gold */
-  --bs-secondary-hover: #d4a93e;
-  --bs-success: #4db6ac;
-  --bs-success-hover: #008080;
-  --bs-info: #aab8ff;
-  --bs-warning: #f28c82;
-  --bs-warning-hover: #d96b63;
-  --bs-danger: #d96b63;
-  --bs-danger-hover: #c25550;
-  --bs-light: #f8f8f8;
-  --bs-dark: #1a1a1a;
+    /* Brand / Bootstrap Colors */
+  --bs-primary: #f8f8f8;          /* Medium gray */
+  --bs-primary-hover: #f1f1f1;    /* Darker gray */
+
+  --bs-secondary: #b0b0b0;        /* Light-medium gray */
+  --bs-secondary-hover: #909090;  /* Slightly darker */
+
+  --bs-success: #999999;           /* Neutral gray */
+  --bs-success-hover: #777777;     /* Darker gray */
+
+  --bs-info: #bbbbbb;              /* Light gray */
+
+  --bs-warning: #aaaaaa;           /* Gray */
+  --bs-warning-hover: #888888;
+
+  --bs-danger: #777777;            /* Gray for danger */
+  --bs-danger-hover: #555555;
+
+  --bs-light: #f8f8f8;             /* Very light gray */
+  --bs-dark: #1a1a1a;              /* Very dark gray */
 
   /* Text & Background */
   --color-text: #1a1a1a;
@@ -59,19 +65,17 @@ main {
   --bs-btn-hover-bg: var(--bs-primary-hover);
   --bs-btn-hover-border-color: var(--bs-primary-hover);
 
-  --bs-btn-focus-shadow-rgb: 242, 140, 130;
+  --bs-btn-focus-shadow-rgb: 136, 136, 136; /* Gray version of previous pink */
 
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #d96b63;
-  --bs-btn-active-border-color: #d96b63;
+  --bs-btn-active-bg: #555555;        /* Dark gray active */
+  --bs-btn-active-border-color: #555555;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
 
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: var(--bs-primary);
   --bs-btn-disabled-border-color: var(--bs-primary);
 }
-
-
 
 /* Primary button overrides */
 .btn-primary {
@@ -83,11 +87,11 @@ main {
   --bs-btn-hover-bg: var(--bs-primary-hover);
   --bs-btn-hover-border-color: var(--bs-primary-hover);
 
-  --bs-btn-focus-shadow-rgb: 242, 140, 130;
+  --bs-btn-focus-shadow-rgb: 136, 136, 136; /* Gray shadow */
 
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #d96b63;
-  --bs-btn-active-border-color: #d96b63;
+  --bs-btn-active-bg: #555555;        /* Dark gray active */
+  --bs-btn-active-border-color: #555555;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
 
   --bs-btn-disabled-color: #fff;

@@ -34,9 +34,8 @@
 }
 
 
-/* Smooth fade + slide down for dropdown menu */
 .navbar .dropdown-menu {
-  display: block; /* keep it block for transition */
+  display: none; /* hide by default */
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -44,6 +43,7 @@
 }
 
 .navbar .show.dropdown-menu {
+  display: block; /* only show when active */
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
@@ -53,9 +53,9 @@
   color: var(--color-primary);
 }
 .dropdown-item.active, .dropdown-item:active {
-    color: var(--bs-dropdown-link-active-color);
+ 
     text-decoration: none;
-    background-color: var(--bs-dropdown-link-color);
+    background-color: var(--bs-secondary);
     font-weight: 700;
 }
 .navbar .nav-item.dropdown.active > .nav-link {
