@@ -11,6 +11,7 @@ import ComingSoon from "./pages/ComingSoon";
 import Services from "./pages/Services";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import NotFound from "./pages/NotFound";
 import usePageTracking from "./hooks/usePageTracking";
 import { useFavicon } from "./hooks/useFavicon";
 import lightIcon from "./assets/media/ts-icon.svg";
@@ -25,26 +26,32 @@ function App() {
     return <ComingSoon />;
   }
 
-  return (
-    <Router>
-        <ScrollToTop />
-      {/* Hook must be inside Router */}
-      <PageTrackingWrapper>
-        <Navigation />
+return (
+  <Router>
+  <ScrollToTop />
+  <PageTrackingWrapper>
+    <div className="d-flex flex-column min-vh-100">
+      <Navigation />
+      <main className="flex-grow-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/photo" element={<PhotoPage />} />
           <Route path="/video" element={<VideoPage />} />
           <Route path="/contact" element={<ContactPage />} />
-           <Route path="/services" element={<Services />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
-      </PageTrackingWrapper>
-    </Router>
-  );
+      </main>
+      <Footer />
+    </div>
+  </PageTrackingWrapper>
+</Router>
+
+);
+
 }
 
 // Optional wrapper to keep hook separate

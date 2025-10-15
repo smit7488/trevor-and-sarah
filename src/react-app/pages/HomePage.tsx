@@ -136,6 +136,17 @@ const services = [
         </Col>
       ))}
     </Row>
+    <p className="text-center mt-5">
+  Each project is unique —{" "}
+  <Link 
+    to="/contact" 
+    style={{ fontWeight: 700, color: "var(--color-text)" }}
+  >
+    contact us
+  </Link>{" "}
+  for a personalized quote.
+</p>
+
   </Container>
 </section>
 
