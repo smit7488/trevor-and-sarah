@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef, JSX } from "react";
 import client from "../contentfulClient";
 import { PortfolioItem } from "../types/contentful";
-import Masonry from "react-masonry-css";
 import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
@@ -22,18 +21,27 @@ function shuffle<T>(array: T[]): T[] {
 
 export default function PhotoPage() {
   const [photoItems, setPhotoItems] = useState<JSX.Element[]>([]);
+  const [allItems, setAllItems] = useState<JSX.Element[]>([]);
+  const [genres, setGenres] = useState<string[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<Set<string>>(new Set());
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Fetch Contentful items
   useEffect(() => {
     client
       .getEntries({ content_type: "portfolioItem" })
       .then((response) => {
+        const genreSet = new Set<string>();
         const mapped = response.items
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           .map((item: any, idx: number) => {
             const fields: PortfolioItem["fields"] = item.fields;
             const photos = fields.photos || [];
-            const genres = Array.isArray(fields.genre) ? fields.genre : [];
+            const itemGenres = Array.isArray(fields.genre) ? fields.genre : [];
+
+            itemGenres.forEach((g) => {
+              const genreTitle = g?.fields?.name ?? g?.fields?.title;
+              if (genreTitle) genreSet.add(genreTitle);
+            });
 
             if (!photos.length) return null;
 
@@ -44,13 +52,15 @@ export default function PhotoPage() {
               return (
                 <div
                   key={`${idx}-${pIdx}`}
-                  className="masonry-item relative overflow-hidden rounded shadow-sm fade-observe"
+                  className={`masonry-item fade-observe rounded shadow-sm overflow-hidden`}
+                  data-genres={itemGenres
+                    .map((g) => g?.fields?.name ?? g?.fields?.title)
+                    .join(",")}
                 >
                   <img
                     src={mediaUrl}
                     alt={fields.title}
                     loading="lazy"
-                    className="img-fluid w-100 d-block rounded"
                   />
                   <div className="overlay absolute bottom-0 left-0 w-100 bg-[#1a1a1a]/60 text-white p-3 translate-y-full transition-transform duration-300 d-flex flex-column justify-content-end">
                     <div className="d-flex justify-content-between align-items-center mb-1 gap-1">
@@ -69,8 +79,8 @@ export default function PhotoPage() {
                       )}
                     </div>
                     <div className="mb-0">
-                      {genres.map((genre: any, gIdx: number) => {
-                        const title = genre?.fields?.name || "Unknown Genre";
+                      {itemGenres.map((genre: any, gIdx: number) => {
+                        const title = genre?.fields?.name ?? genre?.fields?.title ?? "Unknown Genre";
                         return (
                           <Badge key={gIdx} bg="secondary" className="me-1">
                             {title}
@@ -86,10 +96,26 @@ export default function PhotoPage() {
           .flat()
           .filter(Boolean) as JSX.Element[];
 
+        setAllItems(shuffle(mapped));
         setPhotoItems(shuffle(mapped));
+        setGenres(Array.from(genreSet));
       })
       .catch(console.error);
   }, []);
+
+  // Filter items by selected genres
+  useEffect(() => {
+    if (selectedGenres.size === 0) {
+      setPhotoItems(allItems);
+    } else {
+      const filtered = allItems.filter((el) => {
+        const itemGenres = el.props["data-genres"] as string;
+        const itemGenreList = itemGenres.split(",");
+        return [...selectedGenres].some((g) => itemGenreList.includes(g));
+      });
+      setPhotoItems(filtered);
+    }
+  }, [selectedGenres, allItems]);
 
   // Fade in on scroll
   useEffect(() => {
@@ -98,11 +124,11 @@ export default function PhotoPage() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("fade-in");
-            observer.unobserve(entry.target); // stop observing once visible
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.2 } // 20% visible triggers animation
+      { threshold: 0.2 }
     );
 
     const elements = containerRef.current?.querySelectorAll(".fade-observe");
@@ -110,13 +136,6 @@ export default function PhotoPage() {
 
     return () => observer.disconnect();
   }, [photoItems]);
-
-  const breakpointColumnsObj = {
-    default: 3,
-    1200: 3,
-    992: 2,
-    576: 1,
-  };
 
   return (
     <>
@@ -129,15 +148,28 @@ export default function PhotoPage() {
         textColor="#fff"
       />
 
-      <div className="container grid-mt-n5 mb-5 position-relative z-3" ref={containerRef}>
-        <section>
-          <Masonry
-            breakpointCols={breakpointColumnsObj}
-            className="masonry-grid"
-            columnClassName="masonry-grid_column"
-          >
-            {photoItems}
-          </Masonry>
+  <div className="container mb-4 d-flex justify-content-center position-relative z-6" style={{ marginTop: "-6rem" }}>
+  <select
+    id="genre-filter"
+    value={selectedGenres.size > 0 ? Array.from(selectedGenres)[0] : "Show All"}
+    onChange={(e) => {
+      const value = e.target.value;
+      setSelectedGenres(value === "Show All" ? new Set() : new Set([value]));
+    }}
+    className="form-select w-auto"
+  >
+    <option value="Show All">Show All</option>
+    {genres.map((genre) => (
+      <option key={genre} value={genre}>
+        {genre}
+      </option>
+    ))}
+  </select>
+</div>
+
+      <div className="container mb-5 position-relative z-3" ref={containerRef}>
+        <section className="masonry-grid">
+          {photoItems}
         </section>
       </div>
 

@@ -28,6 +28,7 @@ export interface Genre {
     type: string;
   };
   fields: {
+    name: any;
     title: string;
   };
 }
