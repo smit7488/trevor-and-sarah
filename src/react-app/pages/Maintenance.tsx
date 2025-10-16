@@ -5,7 +5,7 @@ import tsLogo from "../assets/media/trevor-and-sarah-logo-vertical-white.svg";
 
 
 
-export default function ComingSoon() {
+export default function Maintenance() {
 
   return (
     <>
@@ -26,7 +26,7 @@ export default function ComingSoon() {
               className="text-uppercase mt-5"
               style={{ letterSpacing: "0.15em" }}
             >
-              Coming Soon!
+              Site is undergoing maintenance. Please check back later!
             </p>
           </>
         }

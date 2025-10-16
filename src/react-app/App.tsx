@@ -7,23 +7,22 @@ import AboutPage from "./pages/AboutPage";
 import PhotoPage from "./pages/PhotoPage";
 import VideoPage from "./pages/VideoPage";
 import ContactPage from "./pages/ContactPage";
-import ComingSoon from "./pages/ComingSoon";
+import Maintenance from "./pages/Maintenance";
 import Services from "./pages/Services";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 import usePageTracking from "./hooks/usePageTracking";
 import { useFavicon } from "./hooks/useFavicon";
-import lightIcon from "./assets/media/ts-icon.svg";
-import darkIcon from "./assets/media/ts-icon-white.svg";
 
-const IS_COMING_SOON = false; // toggle or use env variable
+
+const IS_UNDER_MAINTENANCE = false; // toggle or use env variable
 
 function App() {
-  useFavicon(lightIcon, darkIcon);
+ useFavicon("/favicon-light.svg", "/favicon-dark.svg");
 
-  if (IS_COMING_SOON) {
-    return <ComingSoon />;
+  if (IS_UNDER_MAINTENANCE) {
+    return <Maintenance />;
   }
 
 return (
