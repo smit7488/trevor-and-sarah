@@ -5,7 +5,8 @@ interface MediaHeroProps {
   videoSrc?: string;
   imageSrc: string;
   overlayContent?: React.ReactNode;
-  wireblock?: string; // optional
+  bottomContent?: React.ReactNode; // <-- new prop for dropdown or extra content
+  wireblock?: string;
   height?: "full" | "half";
   photoOnly?: boolean;
   className?: string;
@@ -16,43 +17,36 @@ const MediaHero: React.FC<MediaHeroProps> = ({
   videoSrc,
   imageSrc,
   overlayContent,
+  bottomContent,
   wireblock,
   height = "full",
   photoOnly = false,
   className = "",
   textColor = "#1a1a1a",
 }) => {
- const navHeight = 64; // px, adjust to match your nav
+  const navHeight = 64; // px, adjust to match your nav
 
-const heightStyle: React.CSSProperties = {
-  height: height === "full" ? `calc(100vh - ${navHeight}px)` : "50vh",
-};
+  const heightStyle: React.CSSProperties = {
+    height: height === "full" ? `calc(100vh - ${navHeight}px)` : "50vh",
+    minHeight: 300,
+  };
 
   const applyTextColor = (content: React.ReactNode): React.ReactNode => {
     if (!content) return null;
 
-    if (typeof content === "string") {
-      return <span style={{ color: textColor }}>{content}</span>;
-    }
+    if (typeof content === "string") return <span style={{ color: textColor }}>{content}</span>;
 
     if (React.isValidElement(content)) {
       const element = content as React.ReactElement<any>;
-      return React.cloneElement(
-        element,
-        {
-          ...(element.props.style !== undefined && {
-            style: { ...(element.props.style || {}), color: textColor },
-          }),
-        },
-        applyTextColor(element.props.children)
-      );
+      const existingStyle = (element.props && (element.props as any).style) || {};
+      return React.cloneElement(element, {
+        style: { ...(existingStyle || {}), color: textColor },
+        children: applyTextColor(element.props.children),
+      });
     }
 
-    if (Array.isArray(content)) {
-      return content.map((child, idx) => (
-        <React.Fragment key={idx}>{applyTextColor(child)}</React.Fragment>
-      ));
-    }
+    if (Array.isArray(content))
+      return content.map((child, idx) => <React.Fragment key={idx}>{applyTextColor(child)}</React.Fragment>);
 
     return content;
   };
@@ -84,7 +78,7 @@ const heightStyle: React.CSSProperties = {
         </video>
       )}
 
-      {/* Wireblock container only if wireblock exists */}
+      {/* Wireblock overlay */}
       {wireblock && (
         <div className="container h-100 d-flex justify-content-center align-items-center position-relative">
           <img
@@ -103,6 +97,16 @@ const heightStyle: React.CSSProperties = {
           style={{ zIndex: 3 }}
         >
           {applyTextColor(overlayContent)}
+        </div>
+      )}
+
+      {/* Bottom content (e.g., dropdown) */}
+      {bottomContent && (
+        <div
+          className="position-absolute bottom-0 start-50 translate-middle-x mb-4"
+          style={{ zIndex: 4 }}
+        >
+          {bottomContent}
         </div>
       )}
     </div>

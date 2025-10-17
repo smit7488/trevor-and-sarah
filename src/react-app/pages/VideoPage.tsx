@@ -57,17 +57,25 @@ export default function VideoPage() {
 
               {/* Text Content */}
               <div>
+                <h5 className="fw-bold mb-2">{fields.title}</h5>
                 <div
-                  className="d-flex align-items-center text-muted small mb-2 flex-wrap"
-                  style={{ gap: ".25rem 1rem" }}
+                  className="d-flex align-items-center text-muted small mb-3 flex-wrap"
+                  style={{ gap: ".25rem .75rem" }}
                 >
-                  <h5 className="fw-bold mb-0">{fields.title}</h5>
+                    {fields.location && (
+                 
+                    <div>
+                      <FaMapMarkerAlt className="me-1 text-muted xx-small" />
+                      <span className="text-truncate text-muted xx-small mb-0">{fields.location}</span>
+                    </div>
+                  
+                )}
                   {/* Genre Badges */}
-                  <div>
+                  <div className="bg-secondary" style={{ borderRadius: "0.25rem" }}>
                     {genres.map((genre: any, gIdx: number) => {
                       const title = genre?.fields?.title || genre?.fields?.name || "Unknown Genre";
                       return (
-                        <Badge key={gIdx} bg="secondary" className="me-1">
+                        <Badge key={gIdx} bg="secondary" className="" >
                           {title}
                         </Badge>
                       );
@@ -75,17 +83,7 @@ export default function VideoPage() {
                   </div>
                 </div>
 
-                {fields.location && (
-                  <div
-                    className="d-flex align-items-center text-muted small mb-2 flex-wrap"
-                    style={{ gap: ".25rem 1rem" }}
-                  >
-                    <div>
-                      <FaMapMarkerAlt className="me-1 text-muted xx-small" />
-                      <span className="text-truncate text-muted xx-small mb-0">{fields.location}</span>
-                    </div>
-                  </div>
-                )}
+              
 
                 {fields.description && <p className="text-muted">{fields.description}</p>}
               </div>

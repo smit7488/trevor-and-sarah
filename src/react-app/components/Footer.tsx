@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
 
           <Col className="d-flex justify-content-center col-12">
             <div className="social-icons d-flex gap-3">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <a href="https://www.facebook.com/profile.php?id=61581547402002" target="_blank" rel="noopener noreferrer" className="social-icon">
                 <FaFacebookF />
               </a>
               <a href="https://www.youtube.com/@ts_filmphoto" target="_blank" rel="noopener noreferrer" className="social-icon">

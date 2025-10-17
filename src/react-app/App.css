@@ -196,6 +196,7 @@ button:disabled {
   min-width: 200px;
   font-weight: 500;
   transition: all 0.2s ease;
+  cursor: pointer !important;
 }
 
 #genre-filter:hover,
@@ -203,4 +204,5 @@ button:disabled {
   border-color: #D4A93E;
   box-shadow: 0 0 10px rgba(255,255,255,0.3);
   outline: none;
+  cursor: pointer !important;
 }

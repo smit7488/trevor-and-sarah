@@ -34,7 +34,7 @@ export default function PhotoPage2() {
         const genreSet = new Set<string>();
 
         const mapped = response.items
-          .filter((item: any) => item.fields.category === "Photo") // only photos
+          .filter((item: any) => item.fields.category === "Photo")
           .map((item: any) => {
             const fields: MediaItem["fields"] = item.fields;
             const photo = fields.photo;
@@ -46,7 +46,6 @@ export default function PhotoPage2() {
             });
 
             if (!photo?.fields?.file?.url) return null;
-
             const mediaUrl = `https:${photo.fields.file.url}`;
 
             return (
@@ -64,7 +63,6 @@ export default function PhotoPage2() {
                     {fields.description && (
                       <p className="mb-0 xx-small text-light">{fields.description}</p>
                     )}
-
                     {fields.location && (
                       <div className="d-flex align-items-center text-muted small">
                         <FaMapMarkerAlt className="me-1 text-light xx-small" />
@@ -135,37 +133,36 @@ export default function PhotoPage2() {
   return (
     <>
       <MediaHero
-        imageSrc={heroImage}
-        overlayContent={<h1 className="text-uppercase">Photo</h1>}
-        height="half"
-        photoOnly
-        wireblock={wireblock}
-        textColor="#fff"
-      />
-
-      <div
-        className="container mb-4 d-flex justify-content-center position-relative z-6"
-        style={{ marginTop: "-6rem" }}
+  imageSrc={heroImage}
+  overlayContent={
+    <div className="d-flex flex-column align-items-center">
+      <h1 className="text-uppercase mb-3">Photo</h1>
+      <select
+        id="genre-filter"
+        value={selectedGenres.size > 0 ? Array.from(selectedGenres)[0] : "Show All"}
+        onChange={(e) => {
+          const value = e.target.value;
+          setSelectedGenres(value === "Show All" ? new Set() : new Set([value]));
+        }}
+        className="form-select w-auto cursor-pointer shadow-lg"
       >
-        <select
-          id="genre-filter"
-          value={selectedGenres.size > 0 ? Array.from(selectedGenres)[0] : "Show All"}
-          onChange={(e) => {
-            const value = e.target.value;
-            setSelectedGenres(value === "Show All" ? new Set() : new Set([value]));
-          }}
-          className="form-select w-auto"
-        >
-          <option value="Show All">Show All</option>
-          {genres.map((genre) => (
-            <option key={genre} value={genre}>
-              {genre}
-            </option>
-          ))}
-        </select>
-      </div>
+        <option value="Show All">Show All</option>
+        {genres.map((genre) => (
+          <option key={genre} value={genre}>
+            {genre}
+          </option>
+        ))}
+      </select>
+    </div>
+  }
+  height="half"
+  photoOnly
+  wireblock={wireblock}
+  textColor="#fff"
+/>
 
-      <div className="container mb-5 position-relative z-3" ref={containerRef}>
+
+      <div className="container mb-5 position-relative z-3 grid-mt-n5" ref={containerRef}>
         <section className="masonry-grid">{photoItems}</section>
       </div>
 
