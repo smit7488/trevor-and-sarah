@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import client from "../contentfulClient";
-import { PortfolioItem } from "../types/contentful";
+import { MediaItem } from "../types/contentful";
 import InstagramFeed from "./InstagramFeed";
 import Spinner from "react-bootstrap/Spinner"; 
 import { Container } from "react-bootstrap";
 
-
-// Helper function to shuffle an array (can be reused globally)
+// Helper function to shuffle an array
 const shuffleArray = (array: any[]) => {
     const arr = [...array]; 
     for (let i = arr.length - 1; i > 0; i--) {
@@ -25,36 +24,28 @@ const RandomContentfulInstagramFeed: React.FC<RandomContentfulInstagramFeedProps
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const IMAGE_LIMIT = 6; 
+        const IMAGE_LIMIT = 6;
 
         client
             .getEntries({ 
-                content_type: "portfolioItem",
-                // FIX: Removed the 'select' parameter. 
-                // This ensures the full linked asset data (fields.file.url) is included in the response.
+                content_type: "mediaItem",
+                "fields.category": "Photo",
             })
             .then((response) => {
                 const allImageUrls: string[] = [];
 
                 response.items.forEach((item: any) => {
-                    const fields: PortfolioItem["fields"] = item.fields;
-                    const photos = fields.photos || [];
+                    const fields: MediaItem["fields"] = item.fields;
+                    const photo = fields.photo;
 
-                    // Extract all valid image URLs from the portfolio items
-                    photos.forEach((photo: any) => {
-                        // This check now passes because photo.fields.file is available
-                        if (photo.fields?.file?.contentType.startsWith("image/")) {
-                            const mediaUrl = `https:${photo.fields.file.url}`;
-                            allImageUrls.push(mediaUrl);
-                        }
-                    });
+                    if (photo?.fields?.file?.contentType.startsWith("image/")) {
+                        const mediaUrl = `https:${photo.fields.file.url}`;
+                        allImageUrls.push(mediaUrl);
+                    }
                 });
 
-                // Shuffle the collected URLs and select up to the limit
                 const shuffledUrls = shuffleArray(allImageUrls);
-                const selectedImages = shuffledUrls.slice(0, IMAGE_LIMIT);
-
-                setRandomImageUrls(selectedImages);
+                setRandomImageUrls(shuffledUrls.slice(0, IMAGE_LIMIT));
             })
             .catch((error) => {
                 console.error("Contentful fetch failed:", error);
@@ -65,7 +56,6 @@ const RandomContentfulInstagramFeed: React.FC<RandomContentfulInstagramFeedProps
     }, []);
 
     if (isLoading) {
-        // Render a placeholder while fetching
         return (
             <section className="py-0 bg-light text-center position-relative">
                 <Container fluid className="p-0 py-5">
@@ -77,7 +67,6 @@ const RandomContentfulInstagramFeed: React.FC<RandomContentfulInstagramFeedProps
         );
     }
     
-    // Pass the fetched random images to the presentational component
     return (
         <InstagramFeed 
             instagramUrl={instagramUrl} 

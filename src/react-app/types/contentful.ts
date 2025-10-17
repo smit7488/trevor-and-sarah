@@ -33,24 +33,6 @@ export interface Genre {
   };
 }
 
-// PortfolioItem content type
-export interface PortfolioItem {
-  sys: {
-    id: string;
-    type: string;
-  };
-  fields: {
-    title: string;
-    description: string;
-    category: string;
-    media?: ContentfulAsset;
-    location?: string;
-    embed?: string;
-    genre?: Genre[];
-    photos?: ContentfulAsset[];
-  };
-}
-
 // Testimonial content type
 export interface Testimonial {
   sys: {
