@@ -1,5 +1,6 @@
 import { useEffect, useState, JSX } from "react";
 import client from "../contentfulClient";
+import { MediaItem } from "../types/contentful";
 import Grid from "../components/Grid";
 import MediaHero from "../components/MediaHero";
 import heroImage from "../assets/media/ts-logo-bg.jpg";
@@ -8,6 +9,7 @@ import Testimonials from "../components/Testimonials";
 import Badge from "react-bootstrap/Badge";
 import CallToAction from "../components/CallToAction";
 import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function VideoPage() {
   const [videoItems, setVideoItems] = useState<JSX.Element[]>([]);
@@ -15,71 +17,81 @@ export default function VideoPage() {
   useEffect(() => {
     client
       .getEntries({
-        content_type: "portfolioItem",
-        include: 2, // ensures linked entries like genres are included
+        content_type: "mediaItem",
+        include: 2,
       })
-      
       .then((response: any) => {
-        const mapped = response.items
-        
-          .map((item: any, idx: number) => {
-            const fields = item.fields;
-            const media = fields.media;
-            const embed = fields.embed;
+        // Filter to videos first
+        const videos = response.items.filter(
+          (item: any) =>
+            item.fields.category === "Video" &&
+            (item.fields.embed || item.fields.photo?.fields.file.contentType.startsWith("video/"))
+        );
 
-            // Only include videos
-            const mediaUrl = media ? `https:${media.fields.file.url}` : "";
-            const contentType = media?.fields.file.contentType || "";
-            if (!(contentType.startsWith("video/") || embed)) return null;
+        // Sort by sortOrder (undefined or null goes to end)
+        videos.sort((a: any, b: any) => {
+          const aOrder = a.fields.sortOrder ?? Number.MAX_SAFE_INTEGER;
+          const bOrder = b.fields.sortOrder ?? Number.MAX_SAFE_INTEGER;
+          return aOrder - bOrder;
+        });
 
-            // Genres: linked entries
-            const genres = Array.isArray(fields.genre) ? fields.genre : [];
+        const mapped = videos.map((item: any, idx: number) => {
+          const fields: MediaItem["fields"] = item.fields;
+          const embed = fields.embed;
+          const photo = fields.photo;
+          const mediaUrl = photo ? `https:${photo.fields.file.url}` : "";
+          const contentType = photo?.fields.file.contentType || "";
+          const genres = Array.isArray(fields.genre) ? fields.genre : [];
 
-            return (
-              <div
-                key={idx}
-                className="portfolio-card text-center p-3 bg-white border rounded shadow-sm h-100"
-              >
-                {/* Video or Embed */}
-                {contentType.startsWith("video/") && (
-                  <video
-                    src={mediaUrl}
-                    className="img-fluid mb-3 rounded"
-                    controls
-                    playsInline
-                  />
-                )}
+          return (
+            <div key={idx} className="portfolio-card p-3 bg-white border rounded shadow-sm h-100">
+              {/* Video or Embed */}
+              {contentType.startsWith("video/") && (
+                <video src={mediaUrl} className="img-fluid mb-3 rounded" controls playsInline />
+              )}
+              {typeof embed === "string" && !contentType.startsWith("video/") && (
+                <div className="embed-container mb-3">
+                  <iframe src={embed} title={fields.title} allowFullScreen />
+                </div>
+              )}
 
-                {typeof embed === "string" && !contentType.startsWith("video/") && (
-                  <div className="embed-container mb-3">
-                    <iframe
-                      src={embed}
-                      title={fields.title}
-                      allowFullScreen
+              {/* Text Content */}
+              <div>
+                <div
+                  className="d-flex align-items-center text-muted small mb-2 flex-wrap"
+                  style={{ gap: ".25rem 1rem" }}
+                >
+                  <h5 className="fw-bold mb-0">{fields.title}</h5>
+                  {/* Genre Badges */}
+                  <div>
+                    {genres.map((genre: any, gIdx: number) => {
+                      const title = genre?.fields?.title || genre?.fields?.name || "Unknown Genre";
+                      return (
+                        <Badge key={gIdx} bg="secondary" className="me-1">
+                          {title}
+                        </Badge>
+                      );
+                    })}
+                  </div>
+                </div>
 
-                    />
+                {fields.location && (
+                  <div
+                    className="d-flex align-items-center text-muted small mb-2 flex-wrap"
+                    style={{ gap: ".25rem 1rem" }}
+                  >
+                    <div>
+                      <FaMapMarkerAlt className="me-1 text-muted xx-small" />
+                      <span className="text-truncate text-muted xx-small mb-0">{fields.location}</span>
+                    </div>
                   </div>
                 )}
 
-                {/* Text Content */}
-                <h5 className="fw-bold">{fields.title}</h5>
-                <p className="text-muted">{fields.description}</p>
-
-                {/* Genre Badges */}
-                <div className="mb-2">
-                  {genres.map((genre: any, gIdx: number) => {
-                    const title = genre?.fields?.name || "Unknown Genre"; // or title if your field is called that
-                    return (
-                      <Badge key={gIdx} bg="secondary" className="me-1">
-                        {title}
-                      </Badge>
-                    );
-                  })}
-                </div>
+                {fields.description && <p className="text-muted">{fields.description}</p>}
               </div>
-            );
-          })
-          .filter(Boolean) as JSX.Element[];
+            </div>
+          );
+        });
 
         setVideoItems(mapped);
       })
@@ -88,26 +100,23 @@ export default function VideoPage() {
 
   return (
     <>
-       
-
-<MediaHero
-  imageSrc={heroImage}
-  overlayContent={<h1 className="text-uppercase">Video</h1>}
-  height="half"
-  photoOnly
-  wireblock={wireblock} 
-  textColor="#fff"
-/>
+      <MediaHero
+        imageSrc={heroImage}
+        overlayContent={<h1 className="text-uppercase">Video</h1>}
+        height="half"
+        photoOnly
+        wireblock={wireblock}
+        textColor="#fff"
+      />
 
       {/* Video Grid */}
       <section className="grid-mt-n5 mb-5">
-
         <Grid items={videoItems} className="position-relative z-3" columns={{ xs: 12, md: 6, lg: 6 }} />
       </section>
 
-     <Testimonials variant="carousel" />
+      <Testimonials variant="carousel" />
 
-     <CallToAction
+      <CallToAction
         heading="Lights, Camera... You!"
         subheading="Let us capture your most memorable moments with cinematic quality and storytelling flair."
         bgColor="#2b2b2b"
@@ -116,7 +125,7 @@ export default function VideoPage() {
         buttonLink="/contact"
       />
 
-   <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" /> 
+      <RandomContentfulInstagramFeed instagramUrl="https://www.instagram.com/ts_filmphoto" />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, JSX } from "react";
 import client from "../contentfulClient";
-import { PortfolioItem } from "../types/contentful";
+import { MediaItem } from "../types/contentful"; 
 import RandomContentfulInstagramFeed from "../components/RandomContentfulInstagramFeed";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
@@ -19,7 +19,7 @@ function shuffle<T>(array: T[]): T[] {
   return arr;
 }
 
-export default function PhotoPage() {
+export default function PhotoPage2() {
   const [photoItems, setPhotoItems] = useState<JSX.Element[]>([]);
   const [allItems, setAllItems] = useState<JSX.Element[]>([]);
   const [genres, setGenres] = useState<string[]>([]);
@@ -29,71 +29,66 @@ export default function PhotoPage() {
   // Fetch Contentful items
   useEffect(() => {
     client
-      .getEntries({ content_type: "portfolioItem" })
+      .getEntries({ content_type: "mediaItem", include: 2 })
       .then((response) => {
         const genreSet = new Set<string>();
+
         const mapped = response.items
-          .map((item: any, idx: number) => {
-            const fields: PortfolioItem["fields"] = item.fields;
-            const photos = fields.photos || [];
+          .filter((item: any) => item.fields.category === "Photo") // only photos
+          .map((item: any) => {
+            const fields: MediaItem["fields"] = item.fields;
+            const photo = fields.photo;
             const itemGenres = Array.isArray(fields.genre) ? fields.genre : [];
 
             itemGenres.forEach((g) => {
-              const genreTitle = g?.fields?.name ?? g?.fields?.title;
+              const genreTitle = (g?.fields as any)?.name ?? g?.fields?.title;
               if (genreTitle) genreSet.add(genreTitle);
             });
 
-            if (!photos.length) return null;
+            if (!photo?.fields?.file?.url) return null;
 
-            return photos.map((photo: any, pIdx: number) => {
-              if (!photo.fields?.file?.contentType.startsWith("image/")) return null;
-              const mediaUrl = `https:${photo.fields.file.url}`;
+            const mediaUrl = `https:${photo.fields.file.url}`;
 
-              return (
-                <div
-                  key={`${idx}-${pIdx}`}
-                  className={`masonry-item fade-observe rounded shadow-sm overflow-hidden`}
-                  data-genres={itemGenres
-                    .map((g) => g?.fields?.name ?? g?.fields?.title)
-                    .join(",")}
-                >
-                  <img
-                    src={mediaUrl}
-                    alt={fields.title}
-                    loading="lazy"
-                  />
-                  <div className="overlay absolute bottom-0 left-0 w-100 bg-[#1a1a1a]/60 text-white p-3 translate-y-full transition-transform duration-300 d-flex flex-column justify-content-end">
-                    <div className="d-flex justify-content-between align-items-center mb-1 gap-1">
-                      <div>
-                        {photo.fields.description && (
-                          <p className="mb-0 xx-small text-light">{photo.fields.description}</p>
-                        )}
+            return (
+              <div
+                key={item.sys.id}
+                className="masonry-item fade-observe rounded shadow-sm overflow-hidden"
+                data-genres={itemGenres
+                  .map((g) => ((g?.fields as any)?.name ?? g?.fields?.title))
+                  .join(",")}
+              >
+                <img src={mediaUrl} alt={fields.title} loading="lazy" />
+
+                <div className="overlay absolute bottom-0 left-0 w-100 bg-[#1a1a1a]/60 text-white p-3 translate-y-full transition-transform duration-300 d-flex flex-column justify-content-end">
+                  <div className="d-flex justify-content-between align-items-center mb-1 gap-1">
+                    {fields.description && (
+                      <p className="mb-0 xx-small text-light">{fields.description}</p>
+                    )}
+
+                    {fields.location && (
+                      <div className="d-flex align-items-center text-muted small">
+                        <FaMapMarkerAlt className="me-1 text-light xx-small" />
+                        <span className="text-truncate text-light xx-small mb-0">
+                          {fields.location}
+                        </span>
                       </div>
-                      {fields.location && (
-                        <div className="d-flex align-items-center text-muted small">
-                          <FaMapMarkerAlt className="me-1 text-light xx-small" />
-                          <span className="text-truncate text-light xx-small mb-0">
-                            {fields.location}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="mb-0">
-                      {itemGenres.map((genre: any, gIdx: number) => {
-                        const title = genre?.fields?.name ?? genre?.fields?.title ?? "Unknown Genre";
-                        return (
-                          <Badge key={gIdx} bg="secondary" className="me-1">
-                            {title}
-                          </Badge>
-                        );
-                      })}
-                    </div>
+                    )}
+                  </div>
+
+                  <div className="mb-0">
+                    {itemGenres.map((genre: any, gIdx: number) => {
+                      const title = ((genre?.fields as any)?.name ?? genre?.fields?.title) ?? "Unknown Genre";
+                      return (
+                        <Badge key={gIdx} bg="secondary" className="me-1">
+                          {title}
+                        </Badge>
+                      );
+                    })}
                   </div>
                 </div>
-              );
-            });
+              </div>
+            );
           })
-          .flat()
           .filter(Boolean) as JSX.Element[];
 
         setAllItems(shuffle(mapped));
@@ -148,29 +143,30 @@ export default function PhotoPage() {
         textColor="#fff"
       />
 
-  <div className="container mb-4 d-flex justify-content-center position-relative z-6" style={{ marginTop: "-6rem" }}>
-  <select
-    id="genre-filter"
-    value={selectedGenres.size > 0 ? Array.from(selectedGenres)[0] : "Show All"}
-    onChange={(e) => {
-      const value = e.target.value;
-      setSelectedGenres(value === "Show All" ? new Set() : new Set([value]));
-    }}
-    className="form-select w-auto"
-  >
-    <option value="Show All">Show All</option>
-    {genres.map((genre) => (
-      <option key={genre} value={genre}>
-        {genre}
-      </option>
-    ))}
-  </select>
-</div>
+      <div
+        className="container mb-4 d-flex justify-content-center position-relative z-6"
+        style={{ marginTop: "-6rem" }}
+      >
+        <select
+          id="genre-filter"
+          value={selectedGenres.size > 0 ? Array.from(selectedGenres)[0] : "Show All"}
+          onChange={(e) => {
+            const value = e.target.value;
+            setSelectedGenres(value === "Show All" ? new Set() : new Set([value]));
+          }}
+          className="form-select w-auto"
+        >
+          <option value="Show All">Show All</option>
+          {genres.map((genre) => (
+            <option key={genre} value={genre}>
+              {genre}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div className="container mb-5 position-relative z-3" ref={containerRef}>
-        <section className="masonry-grid">
-          {photoItems}
-        </section>
+        <section className="masonry-grid">{photoItems}</section>
       </div>
 
       <Testimonials variant="carousel" className="bg-light-100" />

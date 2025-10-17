@@ -64,3 +64,30 @@ export interface Testimonial {
     image?: ContentfulAsset;
   };
 }
+
+// Media Item content type
+export interface MediaItem {
+  sys: {
+    id: string;
+    type: string;
+  };
+  fields: {
+    title: string;
+    category: "Video" | "Photo";
+    description: string;
+    embed?: string; // optional for videos (e.g. Vimeo/YouTube embed code)
+    photo?: ContentfulAsset; // optional if category is Video
+    genre?: {
+      sys: {
+        id: string;
+        type: string;
+        linkType: "Entry";
+      };
+      fields?: {
+        title?: string; // assuming the Genre content type has a "title" field
+      };
+    }[];
+    location?: string;
+  };
+}
+
