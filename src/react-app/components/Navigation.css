@@ -26,7 +26,7 @@
 }
 
 .navbar-brand img:hover {
-  filter: drop-shadow(0 0 1.5em #646cffaa);
+  filter: drop-shadow(0 0 1.5em var(--bs-primary));
 }
 
 .navbar .navbar-brand {
@@ -53,9 +53,9 @@
   color: var(--color-primary);
 }
 .dropdown-item.active, .dropdown-item:active {
- 
+    color: var(--color-primary);
     text-decoration: none;
-    background-color: var(--bs-secondary);
+    background-color: var(--secondary-100);
     font-weight: 700;
 }
 .navbar .nav-item.dropdown.active > .nav-link {

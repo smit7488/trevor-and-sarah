@@ -75,6 +75,73 @@ main {
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: var(--bs-primary);
   --bs-btn-disabled-border-color: var(--bs-primary);
+    --primary-50: #fde8e6;
+  --primary-100: #fbd7d3;
+  --primary-200: #f7b5b0;
+  --primary-300: #f28c82; /* base */
+  --primary-400: #d96b63;
+  --primary-500: #c25550;
+  --primary-600: #a63f3c;
+
+  /* -------- Secondary (Yellow/Gold) -------- */
+  --secondary-50: #fff8e5;
+  --secondary-100: #f9ebc3;
+  --secondary-200: #f5d98d;
+  --secondary-300: #eec35a; /* base */
+  --secondary-400: #d4a93e;
+  --secondary-500: #b9882e;
+  --secondary-600: #99721f;
+
+  /* -------- Success (Teal) -------- */
+  --success-50: #e6f4f2;
+  --success-100: #b3e0db;
+  --success-200: #80cbc4;
+  --success-300: #4db6ac; /* base */
+  --success-400: #008080;
+  --success-500: #006666;
+  --success-600: #004d4d;
+
+  /* -------- Info (Blue) -------- */
+  --info-50: #e6e8ff;
+  --info-100: #cdd2ff;
+  --info-200: #aab8ff; /* base */
+  --info-300: #8a9cff;
+  --info-400: #6e7eff;
+  --info-500: #4f60ff;
+  --info-600: #3440ff;
+
+  /* -------- Warning (Pink/Light Red) -------- */
+  --warning-50: #fde8e6;
+  --warning-100: #fad6d1;
+  --warning-200: #f5b1aa;
+  --warning-300: #f28c82; /* base */
+  --warning-400: #d96b63;
+  --warning-500: #c25550;
+  --warning-600: #a63f3c;
+
+  /* -------- Danger (Red) -------- */
+  --danger-50: #fbe6e5;
+  --danger-100: #f2c1b4;
+  --danger-200: #e6a38c;
+  --danger-300: #d96b63; /* base */
+  --danger-400: #c25550;
+  --danger-500: #a63f3c;
+  --danger-600: #84312b;
+
+  /* -------- Neutral / Light / Dark -------- */
+  --light: #f8f8f8;
+  --light-50: #ffffff;
+  --light-100: #f2f2f2;
+  --light-200: #e6e6e6;
+  --light-300: #cccccc;
+  --light-400: #b3b3b3;
+
+  --dark: #1a1a1a;
+  --dark-50: #2b2b2b;
+  --dark-100: #3d3d3d;
+  --dark-200: #4e4e4e;
+  --dark-300: #666666;
+  --dark-400: #808080;
 }
 
 /* Primary button overrides */

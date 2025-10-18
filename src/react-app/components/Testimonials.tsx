@@ -8,7 +8,8 @@ interface TestimonialsProps {
   variant?: "carousel" | "list";
   bgColor?: string;          // e.g., "bg-light", "bg-white", "#f8f9fa"
   filterIds?: string[];      // only show testimonials with these sys.ids
-  className?: string;        // extra custom class names
+  className?: string; 
+ 
 }
 
 const Testimonials: React.FC<TestimonialsProps> = ({

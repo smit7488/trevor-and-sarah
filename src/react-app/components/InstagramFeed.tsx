@@ -53,7 +53,7 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({
             href={instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="d-flex align-items-center justify-content-center"
+            className="d-flex align-items-center justify-content-center "
           >
             <FaInstagram size={20} className="me-2" />
             Follow us on Instagram
