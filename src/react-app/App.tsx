@@ -16,6 +16,7 @@ import usePageTracking from "./hooks/usePageTracking";
 import { useFavicon } from "./hooks/useFavicon";
 
 
+
 const IS_UNDER_MAINTENANCE = false; // toggle or use env variable
 
 function App() {
